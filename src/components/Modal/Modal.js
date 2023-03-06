@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Modal = () => {
-  return null;
+  return <div>Modal</div>;
 };
 
 export default Modal;
