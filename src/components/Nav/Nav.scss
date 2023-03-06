@@ -1,0 +1,58 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+
+.nav {
+  position: fixed;
+  margin: 0 auto;
+  width: 100%;
+
+  .header {
+    min-width: 1050px;
+    padding: 0px 15%;
+
+    .signUpLoginCs {
+      @include flexSort(flex-end, null);
+
+      ul {
+        li {
+          float: left;
+          padding: 15px;
+          font-size: $small;
+          font-weight: 400;
+
+          &:nth-child(2) {
+            color: #999999;
+          }
+
+          &:nth-child(3) {
+            color: #999999;
+          }
+        }
+      }
+    }
+  }
+
+  .main {
+    margin: 20px 0;
+    @include flexSort(space-between, center);
+    padding: 0px 15px;
+    .searchArea {
+      .search {
+        background-image: url('../../assets/images/nav/search.png');
+        background-size: $large;
+        background-repeat: no-repeat;
+        background-position: 95%;
+        width: 440px;
+        height: 52px;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+    }
+
+    .icons {
+      img {
+        width: 28px;
+      }
+    }
+  }
+}
