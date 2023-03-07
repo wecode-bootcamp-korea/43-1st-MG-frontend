@@ -7,7 +7,7 @@ import './Nav.scss';
 
 const Nav = props => {
   const navigate = useNavigate();
-  const { setSearchKeyword, basket } = props;
+  const { setSearchKeyword, basket, setSelectedCategory } = props;
   const [inputSearchVal, setInputSearchVal] = useState('');
   let isLogined = localStorage.getItem('signup_token') ? true : false;
 
@@ -86,7 +86,11 @@ const Nav = props => {
       <div className="headerCate">
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
-            <div className={`menu ${cate.cn}`} key={cate.id}>
+            <div
+              className="menu"
+              key={cate.id}
+              onClick={() => setSelectedCategory(cate.name)}
+            >
               {cate.name}
             </div>
           ))}
