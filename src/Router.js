@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal';
@@ -11,15 +11,26 @@ import ShoppingBasket from './pages/ShoppingBasket/ShoppingBasket';
 import SignUp from './pages/SignUp/SignUp';
 
 const Router = () => {
+  //Nav 검색키워드
+  const [searchKeyword, setSearchKeyword] = useState('');
+  //장바구니에 담긴 상품 수
+  const [basket, setBasket] = useState([]);
+
   return (
     <BrowserRouter>
-      <Nav />
+      <Nav setSearchKeyword={setSearchKeyword} basket={basket} />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={<Main searchKeyword={searchKeyword} setBasket={setBasket} />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/productDetail" element={<ProductDetail />} />
-        <Route path="/shoppingBasket" element={<ShoppingBasket />} />
+        <Route
+          path="/shoppingBasket"
+          element={<ShoppingBasket basket={basket} setBasket={setBasket} />}
+        />
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
       <Footer />

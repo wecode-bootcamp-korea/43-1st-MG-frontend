@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Main = () => {
+const Main = props => {
+  const { searchKeyword } = props;
   return <div>Main</div>;
 };
 
