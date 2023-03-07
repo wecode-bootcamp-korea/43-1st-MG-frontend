@@ -39,8 +39,8 @@
   }
 
   .main {
-    margin: 20px 0;
     @include flexSort(space-around, center);
+    margin: 20px 0;
     padding: 0px 15px;
 
     .searchArea {

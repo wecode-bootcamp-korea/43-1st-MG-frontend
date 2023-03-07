@@ -13,7 +13,7 @@ const Nav = props => {
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
-  let isLogined = localStorage.getItem('signup_token');
+  const loginToken = localStorage.getItem('signup_token');
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
@@ -34,7 +34,7 @@ const Nav = props => {
       <div className="header">
         <div className="signUpLoginCs">
           <ul>
-            {isLogined ? (
+            {loginToken ? (
               <>
                 {LOGIN_USER_LIST.map(list => {
                   return (
