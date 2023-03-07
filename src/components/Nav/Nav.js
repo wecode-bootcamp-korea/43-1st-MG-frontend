@@ -6,10 +6,14 @@ import Search from '../../assets/images/nav/search.png';
 import './Nav.scss';
 
 const Nav = props => {
-  const navigate = useNavigate();
-  const { setSearchKeyword, basket, setSelectedCategory } = props;
+  //아래 state들은 동적라우팅을 학습하게 되면 사용할 예정입니다.
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [basket, setBasket] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
   const [inputSearchVal, setInputSearchVal] = useState('');
-  let isLogined = localStorage.getItem('signup_token') ? true : false;
+  const navigate = useNavigate();
+  let isLogined = localStorage.getItem('signup_token');
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
@@ -17,36 +21,48 @@ const Nav = props => {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('signup_token');
-    navigate('/');
+  const handleLink = (e, path) => {
+    if (e.target.title === '로그아웃') {
+      localStorage.removeItem('signup_token');
+      navigate('/');
+    } else {
+      navigate(path);
+    }
   };
   return (
     <header className="nav">
       <div className="header">
         <div className="signUpLoginCs">
           <ul>
-            <li>
-              {isLogined ? (
-                //마이페이지는 추후에 추가 구현
-                <Link className="link">마이페이지</Link>
-              ) : (
-                <Link className="link" to="/signUp">
-                  회원가입
-                </Link>
-              )}
-            </li>
-            <li>
-              {isLogined ? (
-                <Link className="link" onClick={logout}>
-                  로그아웃
-                </Link>
-              ) : (
-                <Link className="link" to="/login">
-                  로그인
-                </Link>
-              )}
-            </li>
+            {isLogined ? (
+              <>
+                {LOGIN_USER_LIST.map(list => {
+                  return (
+                    <li key={list.id}>
+                      <span
+                        className="link"
+                        title={list.title}
+                        onClick={e => handleLink(e, list.path)}
+                      >
+                        {list.title}
+                      </span>
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {SIGNUP_USER_LIST.map(list => {
+                  return (
+                    <li key={list.id}>
+                      <Link className="link" to={list.path}>
+                        {list.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </>
+            )}
             <li>
               <Link className="link" to="/">
                 고객센터
@@ -101,6 +117,16 @@ const Nav = props => {
 };
 
 export default Nav;
+
+const LOGIN_USER_LIST = [
+  { id: 1, title: '마이페이지', path: '/' },
+  { id: 2, title: '로그아웃', path: '/' },
+];
+
+const SIGNUP_USER_LIST = [
+  { id: 1, title: '회원가입', path: '/signUp' },
+  { id: 2, title: '로그인', path: '/login' },
+];
 
 const CATE_LIST = [
   { id: 1, name: 'All' },
