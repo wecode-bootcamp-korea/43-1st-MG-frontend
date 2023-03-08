@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import leftArrow from '../../../assets/images/slide/left-arrow.png';
 import rightArrow from '../../../assets/images/slide/right-arrow.png';
 import './ImgSlide.scss';
