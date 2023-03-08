@@ -49,6 +49,10 @@ const ImgSlide = () => {
       <button onClick={moveToNextSlide}>
         <img className="rightArrow" src={rightArrow} alt="rightImg" />
       </button>
+
+      <span className="imgPage">
+        {currentImgOrder + 1} / {slideData.length}
+      </span>
     </div>
   );
 };

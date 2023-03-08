@@ -22,9 +22,9 @@ button {
   }
 
   .rightArrow {
+    position: absolute;
     top: 45%;
     right: 5%;
-    position: absolute;
     width: $xlarge;
   }
 
@@ -36,5 +36,13 @@ button {
     img {
       width: 100%;
     }
+  }
+
+  .imgPage {
+    position: absolute;
+    right: 15%;
+    bottom: 20%;
+    color: #adaca7;
+    font-size: 14px;
   }
 }
