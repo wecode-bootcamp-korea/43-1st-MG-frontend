@@ -1,0 +1,352 @@
+@import '../../styles/mixin';
+@import '../../styles/variables';
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.container {
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 180px;
+
+  h1 {
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .required {
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+    color: rgb(102, 102, 102);
+    font-size: 13px;
+    text-align: right;
+
+    span {
+      color: $pink;
+    }
+  }
+
+  .signUpForm {
+    margin-top: 10px;
+    padding: 0 30px;
+
+    .email {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        width: 80px;
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+      .guideBox {
+        display: flex;
+        flex-direction: column;
+        color: red;
+        font-size: 12px;
+
+        input {
+          @include infoInputWithBtn;
+        }
+
+        .guide {
+          margin-top: 5px;
+          margin-left: 100px;
+          font-weight: 700;
+        }
+      }
+      button {
+        @include infoButton;
+      }
+    }
+
+    .password {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+      .guideBox {
+        display: flex;
+        flex-direction: column;
+        color: red;
+        font-size: 12px;
+
+        input {
+          @include infoInput;
+        }
+
+        .guide {
+          margin-top: 5px;
+          margin-left: 0;
+          font-weight: 700;
+        }
+
+        button {
+          @include infoButton;
+        }
+      }
+    }
+
+    .passwordCheck {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+      .guideBox {
+        display: flex;
+        flex-direction: column;
+        color: red;
+        font-size: 12px;
+
+        input {
+          @include infoInput;
+        }
+
+        .guide {
+          margin-top: 5px;
+          margin-left: 0;
+          font-weight: 700;
+        }
+
+        button {
+          @include infoButton;
+        }
+      }
+    }
+
+    .name {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+
+      input {
+        @include infoInput;
+      }
+
+      button {
+        @include infoButton;
+      }
+    }
+
+    .gender {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+
+      .gentertext {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+
+      .gerderList {
+        display: flex;
+        margin-left: 168px;
+
+        .genderbox {
+          margin-right: 10px;
+        }
+
+        input {
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+        }
+        .genderText {
+          font-size: 13px;
+        }
+      }
+    }
+    .phoneNumber {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        width: 80px;
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+
+      input {
+        @include infoInputWithBtn;
+      }
+
+      .guide {
+        margin-top: 5px;
+        margin-left: 100px;
+        font-weight: 700;
+      }
+    }
+    button {
+      @include infoButton;
+    }
+
+    .birthday {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+
+      input {
+        @include infoInput;
+      }
+
+      button {
+        @include infoButton;
+      }
+    }
+
+    .adress {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 10px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: bold;
+
+        .pinkStar {
+          color: $pink;
+        }
+      }
+
+      input {
+        @include infoInput;
+      }
+
+      button {
+        @include infoButton;
+      }
+    }
+  }
+
+  .agreeArea {
+    display: flex;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 2px solid black;
+
+    .agreeInfo {
+      width: 100px;
+      margin-right: 30px;
+      font-size: 13px;
+
+      text-align: right;
+
+      .pinkStar {
+        color: $pink;
+      }
+    }
+
+    .agreeList {
+      .areeListCheckAll {
+        margin-bottom: 10px;
+        .check {
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
+          .text {
+            font-size: 19px;
+            font-weight: bolder;
+          }
+        }
+        .textAbout {
+          margin-left: 27px;
+          color: rgb(102, 102, 102);
+          font-size: 12px;
+        }
+      }
+      .check1 {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        input {
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+.joinButton {
+  width: 240px;
+  height: 50px;
+  margin-top: 80px;
+  margin-left: 35%;
+  border: none;
+  border-radius: 3px;
+  background-color: $blue;
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
