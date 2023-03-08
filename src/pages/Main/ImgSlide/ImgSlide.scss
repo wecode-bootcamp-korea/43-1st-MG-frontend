@@ -1,0 +1,40 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+button {
+  border: 0;
+  background-color: transparent;
+  width: 6%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.imgslide {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+
+  .leftArrow {
+    position: absolute;
+    width: $xlarge;
+    top: 45%;
+  }
+
+  .rightArrow {
+    top: 45%;
+    right: 5%;
+    position: absolute;
+    width: $xlarge;
+  }
+
+  .slideWrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
