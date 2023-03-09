@@ -2,12 +2,15 @@
 @import '/src/styles/variables.scss';
 
 .productList {
-  margin: 10%;
-  padding: 0px 16px;
+  margin: 0 10%;
+  padding: 60px 16px;
+  border-bottom: 1px solid #e7e7e3;
 
-  .products {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+  .productListWrapper {
+    margin: 0 auto;
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }
