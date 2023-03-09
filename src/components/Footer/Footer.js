@@ -6,15 +6,11 @@ import './Footer.scss';
 const Footer = () => {
   const loginToken = localStorage.getItem('signup_token');
   const navigate = useNavigate();
-  const handleLink = id => {
-    if (id === 1) {
-      //로그인 or 로그아웃
-      if (!loginToken) navigate('/login');
-      else {
-        localStorage.removeItem('signup_token');
-        navigate('/');
-      }
+  const handleLink = e => {
+    if (e.target.innerHTML === '로그인') {
+      navigate('/login');
     } else {
+      localStorage.removeItem('signup_token');
       navigate('/');
     }
   };
@@ -23,35 +19,20 @@ const Footer = () => {
       <div className="container">
         <div className="top">
           <ul>
-            {loginToken ? (
-              <>
-                {FOOTER_TOP_ITEMS_LOGINED.map(footerTopItem => {
-                  return (
-                    <span
-                      key={footerTopItem.id}
-                      onClick={() => handleLink(footerTopItem.id)}
-                      className="footerTopItem"
-                    >
-                      <li>{footerTopItem.text}</li>
-                    </span>
-                  );
-                })}
-              </>
-            ) : (
-              <>
-                {FOOTER_TOP_ITEMS_NOT_LOGINED.map(footerTopItem => {
-                  return (
-                    <span
-                      key={footerTopItem.id}
-                      onClick={() => handleLink(footerTopItem.id)}
-                      className="footerTopItem"
-                    >
-                      <li>{footerTopItem.text}</li>
-                    </span>
-                  );
-                })}
-              </>
-            )}
+            <span onClick={handleLink} className="footerTopItem">
+              <li>{loginToken ? '로그아웃' : '로그인'}</li>
+            </span>
+            {INFO_LIST.map(footerTopItem => {
+              return (
+                <span
+                  key={footerTopItem.id}
+                  onClick={() => navigate('/')}
+                  className="footerTopItem"
+                >
+                  <li>{footerTopItem.text}</li>
+                </span>
+              );
+            })}
           </ul>
         </div>
         <hr />
@@ -105,20 +86,11 @@ const Footer = () => {
 
 export default Footer;
 
-const FOOTER_TOP_ITEMS_NOT_LOGINED = [
-  { id: 1, text: '로그인' },
-  { id: 2, text: '고객센터' },
-  { id: 3, text: '브랜드 스토리' },
-  { id: 4, text: '블로그' },
-  { id: 5, text: '인재채용' },
-];
-
-const FOOTER_TOP_ITEMS_LOGINED = [
-  { id: 1, text: '로그아웃' },
-  { id: 2, text: '고객센터' },
-  { id: 3, text: '브랜드 스토리' },
-  { id: 4, text: '블로그' },
-  { id: 5, text: '인재채용' },
+const INFO_LIST = [
+  { id: 1, text: '고객센터' },
+  { id: 2, text: '브랜드 스토리' },
+  { id: 3, text: '블로그' },
+  { id: 4, text: '인재채용' },
 ];
 
 const FOOTER_BOTTOM_ITEMS = [
