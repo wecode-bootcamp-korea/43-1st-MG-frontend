@@ -108,7 +108,7 @@ input[type='number']::-webkit-inner-spin-button {
       }
     }
 
-    .passwordCheck {
+    .passwordAgain {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
@@ -218,6 +218,7 @@ input[type='number']::-webkit-inner-spin-button {
 
       input {
         @include infoInputWithBtn;
+        margin-right: 135px;
       }
 
       .guide {

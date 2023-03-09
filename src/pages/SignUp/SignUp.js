@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SIGNUP_INPUT_LIST } from './signupInPutList';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -30,13 +31,13 @@ const SignUp = () => {
 
   const goToMain = () => {
     if (
-      emailCheck &&
-      passwordCheck &&
-      passwordCheckAgain &&
-      namecheck &&
-      phoneNumberCheak &&
-      birthdayCheck &&
-      adressCheck &&
+      conditions.emailCheck &&
+      conditions.passwordCheck &&
+      conditions.passwordAgainCheck &&
+      conditions.namecheck &&
+      conditions.phoneNumberCheak &&
+      conditions.birthdayCheck &&
+      conditions.adressCheck &&
       isAllChecked
     ) {
       navigate('/');
@@ -45,18 +46,24 @@ const SignUp = () => {
     }
   };
 
-  const emailCheck =
-    !email || (email.includes('@', 5) && email.includes('.com', 9));
-  const passwordCheck =
-    !password ||
-    new RegExp(/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/).test(
-      password
-    );
-  const passwordCheckAgain = !passwordAgain || password === passwordAgain;
-  const namecheck = name.length >= 2;
-  const phoneNumberCheak = phoneNumber.length >= 10 && phoneNumber.length <= 12;
-  const birthdayCheck = birthday.length === 6;
-  const adressCheck = adress.length > 8;
+  const conditions = {
+    emailCheck:
+      !email ||
+      new RegExp(
+        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+      ).test(email),
+
+    passwordCheck:
+      !password ||
+      new RegExp(/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/).test(
+        password
+      ),
+    passwordAgainCheck: !passwordAgain || password === passwordAgain,
+    namecheck: name.length >= 2,
+    phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
+    birthdayCheck: birthday.length === 6,
+    adressCheck: adress.length > 8,
+  };
 
   const [isButtonWork, setIsButtonWork] = useState({
     agree: false,
@@ -90,131 +97,55 @@ const SignUp = () => {
         <span className="pinkStar">*</span> 필수입력사항
       </div>
       <form className="signUpForm">
-        <div className="email">
-          <span>
-            이메일<span className="pinkStar">*</span>
-          </span>
-          <div className="guideBox">
-            <input
-              value={email}
-              name="email"
-              placeholder="예: wisely@wisely.com"
-              onChange={handleInput}
-            />
-            {emailCheck ? (
-              ''
-            ) : (
-              <div className="guide">이메일 형식으로 입력해 주세요</div>
-            )}
-          </div>
-          <button>중복확인</button>
-        </div>
-        <div className="password">
-          <span>
-            비밀번호<span className="pinkStar">*</span>
-          </span>
-          <div className="guideBox">
-            <input
-              value={password}
-              name="password"
-              type="password"
-              placeholder="비밀번호를 입력해주세요"
-              onChange={handleInput}
-            />
-            {passwordCheck ? (
-              ''
-            ) : (
-              <div className="guide">
-                (영문 대소문자/숫자/특수문자 중 2가지 이상 조합. 10자~16자)
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="passwordCheck">
-          <span>
-            비밀번호확인<span className="pinkStar">*</span>
-          </span>
-          <div className="guideBox">
-            <input
-              name="passwordAgain"
-              value={passwordAgain}
-              type="password"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-              onChange={handleInput}
-            />
-            {passwordCheckAgain ? (
-              ''
-            ) : (
-              <div className="guide">동일한 비밀번호로 입력해 주세요</div>
-            )}
-          </div>
-        </div>
-        <div className="name">
-          <span>
-            이름<span className="pinkStar">*</span>
-          </span>
-          <input
-            value={name}
-            name="name"
-            placeholder="이름을 입력해주세요"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="gender">
-          <span className="gentertext">
-            성별<span className="pinkStar">*</span>
-          </span>
-          <div className="gerderList">
-            <div className="genderbox">
-              <input type="radio" name="gender" />
-              <span className="genderText">남자</span>
+        {SIGNUP_INPUT_LIST.map(list => {
+          return (
+            <div className={list.name} key={list.id}>
+              {list.title === '성별' ? (
+                <>
+                  <span className="gentertext">
+                    성별<span className="pinkStar">*</span>
+                  </span>
+                  <div className="gerderList">
+                    <div className="genderbox">
+                      <input type="radio" name="gender" />
+                      <span className="genderText">남자</span>
+                    </div>
+                    <div className="genderbox">
+                      <input type="radio" name="gender" />
+                      <span className="genderText">여자</span>
+                    </div>
+                    <div className="genderbox">
+                      <input type="radio" name="gender" />
+                      <span className="genderText">선택안함</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span>
+                    {list.title}
+                    <span className="pinkStar">*</span>
+                  </span>
+                  <div className="guideBox">
+                    <input
+                      value={inputValue[list.name]}
+                      name={list.name}
+                      placeholder={list.placeholder}
+                      onChange={handleInput}
+                      type={list.type}
+                    />
+                    {conditions[list.check] ? (
+                      ''
+                    ) : (
+                      <div className="guide">{list.errorMsg}</div>
+                    )}
+                  </div>
+                  {list.title === '이메일' && <button>중복확인</button>}
+                </>
+              )}
             </div>
-            <div className="genderbox">
-              <input type="radio" name="gender" />
-              <span className="genderText">여자</span>
-            </div>
-            <div className="genderbox">
-              <input type="radio" name="gender" />
-              <span className="genderText">선택안함</span>
-            </div>
-          </div>
-        </div>
-        <div className="phoneNumber">
-          <span>
-            휴대전화<span className="pinkStar">*</span>
-          </span>
-          <input
-            value={phoneNumber}
-            name="phoneNumber"
-            type="number"
-            placeholder="예: 01012345678"
-            onChange={handleInput}
-          />
-          <button>중복확인</button>
-        </div>
-        <div className="birthday">
-          <span>
-            생년월일<span className="pinkStar">*</span>
-          </span>
-          <input
-            value={birthday}
-            name="birthday"
-            type="number"
-            placeholder="예: 950105,  6자리 입력"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="adress">
-          <span>
-            주소<span className="pinkStar">*</span>
-          </span>
-          <input
-            value={adress}
-            name="adress"
-            placeholder="도로명 주소로 입력해주세요"
-            onChange={handleInput}
-          />
-        </div>
+          );
+        })}
       </form>
       <div className="agreeArea">
         <div className="agreeInfo">
