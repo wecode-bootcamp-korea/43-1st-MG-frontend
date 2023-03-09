@@ -29,23 +29,6 @@ const SignUp = () => {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const goToMain = () => {
-    if (
-      conditions.emailCheck &&
-      conditions.passwordCheck &&
-      conditions.passwordAgainCheck &&
-      conditions.namecheck &&
-      conditions.phoneNumberCheak &&
-      conditions.birthdayCheck &&
-      conditions.adressCheck &&
-      isAllChecked
-    ) {
-      navigate('/');
-    } else {
-      alert('필수 정보를 정확하게 입력 해주세요');
-    }
-  };
-
   const conditions = {
     emailCheck:
       !email ||
@@ -63,6 +46,37 @@ const SignUp = () => {
     phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
     birthdayCheck: birthday.length === 6,
     adressCheck: adress.length > 8,
+  };
+
+  const activeButton =
+    conditions.emailCheck &&
+    conditions.passwordCheck &&
+    conditions.passwordAgainCheck &&
+    conditions.namecheck &&
+    conditions.phoneNumberCheak &&
+    conditions.birthdayCheck &&
+    conditions.adressCheck &&
+    isAllChecked;
+
+  const goToMain = () => {
+    if (activeButton) {
+      fetch('http://10.58.52.73:8000/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          passwordAgain: passwordAgain,
+          name: name,
+          phoneNumber: phoneNumber,
+          birthday: birthday,
+          adress: adress,
+        }),
+      }).then(response => response.json());
+      alert('가입이 완료되었습니다. 즐거운 쇼핑 되세요!');
+    } else {
+      alert('필수 정보를 정확하게 입력 해주세요!');
+    }
   };
 
   const [isButtonWork, setIsButtonWork] = useState({
@@ -91,7 +105,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container">
+    <div className="SignUp">
       <h1>회원가입</h1>
       <div className="required">
         <span className="pinkStar">*</span> 필수입력사항
