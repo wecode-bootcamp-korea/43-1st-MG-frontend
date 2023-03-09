@@ -59,4 +59,4 @@ const ImgSlide = () => {
 
 export default ImgSlide;
 
-const IMG_PATH = 'images/slide';
+const IMG_PATH = 'http://localhost:3000/images/slide';

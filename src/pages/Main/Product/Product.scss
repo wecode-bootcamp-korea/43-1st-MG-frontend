@@ -1,0 +1,25 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+.product {
+  width: 250px;
+  height: 250px;
+  margin: 20px 20px 60px 0px;
+
+  .thumbnail {
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+    }
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+}

@@ -92,7 +92,9 @@ const Nav = props => {
             />
           </div>
           <div className="basket">
-            <img src={Basket} alt="basket" />
+            <Link to="/shoppingBasket">
+              <img src={Basket} alt="basket" />
+            </Link>
             {basket.length > 0 && (
               <span className="basketCount">{basket.length}</span>
             )}
@@ -102,12 +104,10 @@ const Nav = props => {
       <div className="headerCate">
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
-            <div
-              className="menu"
-              key={cate.id}
-              onClick={() => setSelectedCategory(cate.name)}
-            >
-              {cate.name}
+            <div className="menu" key={cate.id}>
+              <Link className="link" to={`/cateCode/${cate.id}`}>
+                {cate.name}
+              </Link>
             </div>
           ))}
         </div>
@@ -129,8 +129,8 @@ const SIGNUP_USER_LIST = [
 ];
 
 const CATE_LIST = [
-  { id: 1, name: 'All' },
-  { id: 2, name: 'Women' },
-  { id: 3, name: 'Man' },
-  { id: 4, name: 'Child' },
+  { id: 0, name: 'All' },
+  { id: 1, name: 'Women' },
+  { id: 2, name: 'Man' },
+  { id: 3, name: 'Child' },
 ];

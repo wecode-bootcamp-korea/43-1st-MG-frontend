@@ -1,0 +1,13 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+
+.productList {
+  margin: 10%;
+  padding: 0px 16px;
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}

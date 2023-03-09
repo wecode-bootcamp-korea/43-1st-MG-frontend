@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal';
@@ -16,6 +16,7 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/cateCode/:id" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/productDetail" element={<ProductDetail />} />
