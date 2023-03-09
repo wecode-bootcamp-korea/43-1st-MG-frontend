@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './ShoppingBasket.scss';
+import closeImg from '../../assets/images/cross.png';
+import cartImg from '../../assets/images/shopping-cart.png';
 import Count from '../components/Count/Count';
 
 const ShoppingBasket = () => {
@@ -8,6 +10,7 @@ const ShoppingBasket = () => {
     <div className="cartContainer">
       <div className="titleArea">
         <p>장바구니</p>
+        <img src={cartImg} alt="cart" />
       </div>
       <div className="cartlistContainer">
         <div className="cartChoose">
@@ -29,17 +32,20 @@ const ShoppingBasket = () => {
               <span className="productInfo">1개</span>
             </div>
             <Count count={count} setCount={setCount} />
-            <div className="productallprice">총금액</div>
-            <div className="productdelite">삭제버튼</div>
+            <div className="productAllprice">4,900원</div>
+            <img className="productdelite" src={closeImg} alt="삭제버튼" />
           </div>
           {/* 추후 삭제 */}
           <div className="inCartProducts">
-            <input className="productCheck" type="checkbox" />
+            <input className="inCartproductCheck" type="checkbox" />
             <img src="./images/github.png" alt="productImage" />
-            <span className="productName">상품명</span>
-            <div className="productcount">카운트</div>
-            <div className="productallprice">총금액</div>
-            <div className="productdelite">삭제버튼</div>
+            <div product className="inCartProductName">
+              <span className="productNameText">활력충전 멀티비타민</span>
+              <span className="productInfo">1개</span>
+            </div>
+            <Count count={count} setCount={setCount} />
+            <div className="productAllprice">45,600원</div>
+            <img className="productdelite" src={closeImg} alt="삭제버튼" />
           </div>
         </div>
 

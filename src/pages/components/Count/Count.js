@@ -5,6 +5,9 @@ import './Count.scss';
 
 const Count = props => {
   const { count, setCount } = props;
+  if (count < 1) {
+    setCount(1);
+  }
 
   return (
     <div className="count">
@@ -25,14 +28,6 @@ const Count = props => {
           +
         </button>
       </div>
-      <button
-        className="resetBtn"
-        onClick={() => {
-          setCount(1);
-        }}
-      >
-        reset
-      </button>
     </div>
   );
 };

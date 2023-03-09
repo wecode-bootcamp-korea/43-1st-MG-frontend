@@ -5,9 +5,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 180px;
+
   .titleArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     width: 1018px;
-    height: 165px;
+    height: 135px;
     border-bottom: 2px solid black;
 
     p {
@@ -17,6 +23,11 @@
       line-height: 80px;
       text-align: center;
     }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
   }
   .cartlistContainer {
     .cartChoose {
@@ -24,8 +35,8 @@
       align-items: center;
       width: 660px;
       height: 28px;
-      padding: 35px 0;
-      border-bottom: 2px solid black;
+      padding: 50px 0 25px 0;
+      border-bottom: 2px solid #f4f4f4;
       input {
         width: 30px;
         height: 30px;
@@ -34,12 +45,12 @@
       }
 
       .cartChooseAllCheckText {
-        margin-right: 30px;
+        margin-right: 20px;
         @include cartText;
       }
 
       .cartBar {
-        margin-right: 30px;
+        margin-right: 15px;
         color: $gray;
         font-size: 20px;
       }
@@ -60,8 +71,8 @@
     }
     .cartDelivery {
       width: 660px;
-      padding: 20px 0;
-      border-bottom: 2px solid black;
+      padding: 33px 0 12px 0;
+      border-bottom: 2px solid #f4f4f4;
       span {
         @include cartText;
       }
@@ -74,6 +85,7 @@
       .inCartProducts {
         display: flex;
         align-items: center;
+
         padding: 20px 0;
         border-bottom: 2px solid #f4f4f4;
 
@@ -82,32 +94,50 @@
           height: 20px;
           accent-color: black;
         }
+
         img {
           width: 86px;
           height: 86px;
           margin: 0 20px;
         }
+
         .inCartProductName {
           display: flex;
           flex-direction: column;
-          width: 200px;
+          width: 250px;
 
           .productInfo {
             margin-top: 8px;
             color: $gray;
           }
         }
+
+        .productAllprice {
+          width: 120px;
+          padding-left: 20px;
+          font-weight: bold;
+          text-align: right;
+        }
+
+        .productdelite {
+          width: 20px;
+          height: 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
-    .cartTotalPrice {
-      width: 660px;
-      height: 65px;
-      background-color: #f0f0f0;
+  }
+  .cartTotalPrice {
+    width: 660px;
+    height: 65px;
+    background-color: #f0f0f0;
 
-      .cartTotalPriceText {
-        padding: 24px 45px 0 0;
-        text-align: right;
-      }
+    .cartTotalPriceText {
+      padding: 24px 45px 0 0;
+      text-align: right;
     }
   }
 }
