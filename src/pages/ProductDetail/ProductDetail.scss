@@ -1,5 +1,106 @@
-header {
-  width: 1050px;
-  height: 30px;
-  background-color: yellow;
+.productDetail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .productExplain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1050px;
+    padding: 80px 0;
+    font-size: 12px;
+    .productImg {
+      width: 445px;
+      .screen_out {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        line-height: 0;
+        text-indent: -9999px;
+      }
+      .imgPlover {
+        width: 100%;
+      }
+    }
+    .productGuide {
+      width: 550px;
+      .guideName {
+        font-size: 14px;
+        line-height: 17px;
+      }
+      .guideSubName {
+        position: relative;
+        padding-top: 10px;
+        font-size: 28px;
+        line-height: 35px;
+        .subNameShare {
+          position: absolute;
+          top: 0;
+          right: 6px;
+          width: 22px;
+          height: 22px;
+        }
+      }
+      .guideExplain {
+        padding-top: 72px;
+      }
+      .guideSend {
+        padding-top: 10px;
+        font-size: 16px;
+        .sendNameQuestion {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          margin-left: 5px;
+          vertical-align: top;
+        }
+      }
+      .guideQuantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 66px;
+        margin-top: 10px;
+        background-color: #f2f2f2;
+        .quantityBox {
+          .boxChoice {
+            width: 439px;
+            height: 56px;
+            padding-left: 20px;
+            border-style: none;
+            background-color: #f2f2f2;
+          }
+        }
+      }
+      .guideTotal {
+        display: flex;
+        justify-content: flex-end;
+        padding: 24px 0 50px 0;
+        font-size: 15px;
+      }
+      .guideButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 61px;
+        .buttonBasket {
+          width: 266px;
+          height: 62px;
+          border: 1px solid black;
+          background-color: white;
+          font-size: 18px;
+        }
+        .buttonBuy {
+          width: 266px;
+          height: 62px;
+          border: 1px solid black;
+          background-color: black;
+          color: white;
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }
