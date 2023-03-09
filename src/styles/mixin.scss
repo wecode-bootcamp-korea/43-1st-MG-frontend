@@ -1,11 +1,16 @@
 @mixin flexCenter {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 @mixin flexSort($justifyContent, $alignItems) {
   display: flex;
-  justify-content: $justifyContent;
   align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin cartText {
+  font-size: 20px;
+  font-weight: 600;
 }
