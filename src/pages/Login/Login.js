@@ -32,11 +32,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="loginWelcome">
-        <p>
-          <strong>로그인 및 회원가입을</strong>
-          <br />
-          <strong>시작합니다.</strong>
-        </p>
+        <p>로그인 및 회원가입을 시작합니다.</p>
       </div>
       <form className="loginMain">
         <div>

@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp/SignUp';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/modal" element={<Modal />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
