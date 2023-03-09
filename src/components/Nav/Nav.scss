@@ -1,0 +1,108 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+
+.nav {
+  position: fixed;
+  width: 100%;
+  min-width: 1050px;
+
+  .header {
+    min-width: 1050px;
+    padding: 0px 15%;
+
+    .signUpLoginCs {
+      @include flexSort(flex-end, null);
+
+      ul {
+        li {
+          float: left;
+          padding: 15px;
+          font-size: $small;
+          font-weight: 400;
+          color: #999999;
+
+          .link {
+            text-decoration: none;
+            &:focus,
+            &:hover,
+            &:visited,
+            &:link,
+            &:active {
+              cursor: pointer;
+              color: black;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main {
+    @include flexSort(space-around, center);
+    margin: 20px 0;
+    padding: 0px 15px;
+
+    .searchArea {
+      position: relative;
+
+      .search {
+        width: 440px;
+        height: 52px;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+
+      .searchIcon {
+        position: absolute;
+        width: $large;
+        top: 25%;
+        right: 3%;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .basket {
+      position: relative;
+      img {
+        width: 28px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .basketCount {
+        position: absolute;
+        left: 15px;
+        width: $middle;
+        height: $middle;
+        padding-top: 2px;
+        text-align: center;
+        background-color: black;
+        border-radius: 20px;
+        font-size: $small;
+        color: white;
+      }
+    }
+  }
+
+  .headerCate {
+    width: 60%;
+    margin: 0 auto;
+
+    .cateMenu {
+      @include flexSort(space-between, center);
+
+      .menu {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
