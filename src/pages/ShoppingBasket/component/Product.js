@@ -3,6 +3,8 @@ import closeImg from '../../../assets/images/cross.png';
 import './Product.scss';
 
 export const Product = props => {
+  const { data, setData } = props;
+  // console.log('p', props);
   const [count, setCount] = useState(1);
   if (count < 1) {
     setCount(1);
