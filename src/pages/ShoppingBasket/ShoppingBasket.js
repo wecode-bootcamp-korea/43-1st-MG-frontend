@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './ShoppingBasket.scss';
 import cartImg from '../../assets/images/shopping-cart.png';
-import Count from '../components/Count/Count';
 import { Product } from './component/Product';
 
 const ShoppingBasket = () => {
-  const [count, setCount] = useState(1);
   return (
     <div className="cartContainer">
       <div className="titleArea">
@@ -23,7 +21,9 @@ const ShoppingBasket = () => {
           <span>일반배송</span>
         </div>
         <div className="cartProduct">
-          <Product count={count} setCount={setCount} />
+          <Product />
+          <Product />
+          <Product />
           <div className="cartTotalPrice">
             <div className="cartTotalPriceText">
               <span>제품가격</span> <span> 123123원</span>
