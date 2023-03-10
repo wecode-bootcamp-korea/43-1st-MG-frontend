@@ -20,6 +20,14 @@
     "productName": "뼈·신경·근육엔 칼슘/마그네슘",
     "categoryId": "man",
     "productStock": 1,
+    "productPrice": 43500,
+    "productThumbnail": "/images/product.png"
+  },
+  {
+    "productId": 2,
+    "productName": "면역력에 좋은 프로폴리스",
+    "categoryId": "man",
+    "productStock": 1,
     "productPrice": 28000,
     "productThumbnail": "/images/product.png"
   }
