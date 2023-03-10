@@ -11,7 +11,8 @@ const SignUp = () => {
     gender: 'nothing',
     phoneNumber: '',
     birth: '',
-    adress: '',
+    address: '',
+    point: 0,
   });
 
   const {
@@ -21,7 +22,7 @@ const SignUp = () => {
     userName,
     phoneNumber,
     birth,
-    adress,
+    address,
   } = inputValue;
 
   console.log(inputValue);
@@ -72,15 +73,14 @@ const SignUp = () => {
     userNamecheck: userName.length >= 2,
     phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
     birthCheck: birth.length === 6,
-    adressCheck: adress.length > 8,
+    adressCheck: address.length > 8,
   };
 
   const activeButton = Object.values(conditions).every(value => value === true);
-  console.log('as', activeButton);
 
   const goToMain = () => {
     if (activeButton && isAllChecked) {
-      fetch('http://10.58.52.73:8000/auth/signin', {
+      fetch('http://10.58.52.215:3000/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(inputValue),

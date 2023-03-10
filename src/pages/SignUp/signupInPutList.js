@@ -55,7 +55,7 @@ export const SIGNUP_INPUT_LIST = [
   {
     id: 8,
     title: '주소',
-    name: 'adress',
+    name: 'address',
     type: 'text',
     placeholder: '도로명 주소로 입력해주세요',
   },
