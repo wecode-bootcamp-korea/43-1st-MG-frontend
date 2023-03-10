@@ -3,30 +3,30 @@
   height: 100%;
   padding-top: 180px;
   font-family: 'SUIT', sans-serif;
-  // background-color: red;
   text-align: center;
-  word-break: keep-all; // 문장을 문단으로 구분
+  word-break: keep-all;
+
   .loginWelcome {
     width: 400px;
     height: 67px;
     margin: 0 auto;
-    // background-color: blue;
     font-size: 24px;
+
     p {
-      // Nav와 안내문구와 사이 공백을 넣어줌
-      display: block; // display속성을 inline이 아닌 block으로 표시
+      display: block;
       margin-block-start: 1em;
       margin-block-end: 1em;
       margin-inline-start: 0px;
       margin-inline-end: 0px;
     }
   }
+
   .loginMain {
     width: 400px;
     height: 421px;
     margin: 0 auto;
-    // background-color: yellow;
     font-size: 14px;
+
     .loginMainInputId {
       width: 400px;
       height: 60px;
@@ -36,6 +36,7 @@
       background-color: white;
       font-size: 14px;
     }
+
     .loginMainInputPw {
       width: 400px;
       height: 60px;
@@ -45,6 +46,7 @@
       background-color: white;
       font-size: 14px;
     }
+
     .buttonLogin {
       width: 400px;
       height: 60px;
@@ -64,6 +66,7 @@
       background-color: grey;
       color: white;
     }
+
     .loginButtonMake {
       width: 400px;
       height: 60px;

@@ -3,32 +3,29 @@ import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const [active, setActive] = useState(false);
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState({
+    id: '',
+    pw: '',
+  });
 
-  const saveUserId = e => {
-    setId(e.target.value);
+  const handleInput = e => {
+    const { name, value } = e.target;
+    setInputValue(prev => ({ ...prev, [name]: value }));
   };
-  console.log(id);
+  const id = inputValue.id;
+  const pw = inputValue.pw;
 
-  const saveUserPw = e => {
-    setPw(e.target.value);
-  };
-  console.log(pw);
+  const isValid = id.includes('@' && '.com') && pw.length >= 5;
 
   const goToMain = () => {
-    if (id.includes('@' && '.com') && pw.length >= 5) {
+    if (isValid) {
       navigate('/main');
+    } else {
+      alert('로그인 정보를 올바르게 입력하세요');
     }
   };
 
-  const activeIsPassedLogin = () => {
-    return id.includes('@' && '.com') && pw.length >= 5
-      ? setActive(true)
-      : setActive(false);
-  };
   return (
     <div className="login">
       <div className="loginWelcome">
@@ -40,23 +37,25 @@ const Login = () => {
             className="loginMainInputId"
             type="text"
             placeholder="이메일을 입력해주세요"
-            onChange={saveUserId}
+            name="id"
+            value={id}
+            onChange={handleInput}
           />
           <br />
           <input
             className="loginMainInputPw"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            onChange={saveUserPw}
-            onKeyUp={activeIsPassedLogin}
+            name="pw"
+            value={pw}
+            onChange={handleInput}
           />
         </div>
         <div>
           <button
-            className={active ? 'buttonLogin' : 'buttonLoginDisabled'}
+            className={isValid ? 'buttonLogin' : 'buttonLoginDisabled'}
             disabled={id === '' || pw === '' ? true : false}
             onClick={goToMain}
-            onKeyUp={activeIsPassedLogin}
           >
             로그인
           </button>
