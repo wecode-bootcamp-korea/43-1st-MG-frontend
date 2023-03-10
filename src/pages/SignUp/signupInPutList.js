@@ -23,7 +23,7 @@ export const SIGNUP_INPUT_LIST = [
     name: 'passwordAgain',
     type: 'password',
     placeholder: '비밀번호를 한번 더 입력해주세요',
-    check: 'passwordCheckAgain',
+    check: 'passwordAgainCheck',
     errorMsg: '동일한 비밀번호로 입력해 주세요',
   },
   {

@@ -29,56 +29,6 @@ const SignUp = () => {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const conditions = {
-    emailCheck:
-      !email ||
-      new RegExp(
-        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
-      ).test(email),
-
-    passwordCheck:
-      !password ||
-      new RegExp(/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/).test(
-        password
-      ),
-    passwordAgainCheck: !passwordAgain || password === passwordAgain,
-    namecheck: name.length >= 2,
-    phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
-    birthdayCheck: birthday.length === 6,
-    adressCheck: adress.length > 8,
-  };
-
-  const activeButton =
-    conditions.emailCheck &&
-    conditions.passwordCheck &&
-    conditions.passwordAgainCheck &&
-    conditions.namecheck &&
-    conditions.phoneNumberCheak &&
-    conditions.birthdayCheck &&
-    conditions.adressCheck &&
-    isAllChecked;
-
-  const goToMain = () => {
-    if (activeButton) {
-      fetch('http://10.58.52.73:8000/auth/signin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          passwordAgain: passwordAgain,
-          name: name,
-          phoneNumber: phoneNumber,
-          birthday: birthday,
-          adress: adress,
-        }),
-      }).then(response => response.json());
-      alert('가입이 완료되었습니다. 즐거운 쇼핑 되세요!');
-    } else {
-      alert('필수 정보를 정확하게 입력 해주세요!');
-    }
-  };
-
   const [isButtonWork, setIsButtonWork] = useState({
     agree: false,
     userInfo: false,
@@ -102,6 +52,49 @@ const SignUp = () => {
     checkboxKeys.forEach(list => {
       return setIsButtonWork(prev => ({ ...prev, [list]: !isAllChecked }));
     });
+  };
+
+  const conditions = {
+    emailCheck:
+      !email ||
+      new RegExp(
+        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+      ).test(email),
+
+    passwordCheck:
+      !password ||
+      new RegExp(/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/).test(
+        password
+      ),
+    passwordAgainCheck: !passwordAgain || password === passwordAgain,
+    namecheck: name.length >= 2,
+    phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
+    birthdayCheck: birthday.length === 6,
+    adressCheck: adress.length > 8,
+  };
+
+  const activeButton =
+    Object.values(conditions).every(value => value === true) && isAllChecked;
+
+  const goToMain = () => {
+    if (activeButton) {
+      fetch('http://10.58.52.73:8000/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          passwordAgain: passwordAgain,
+          name: name,
+          phoneNumber: phoneNumber,
+          birthday: birthday,
+          adress: adress,
+        }),
+      }).then(response => response.json());
+      alert('가입이 완료되었습니다. 즐거운 쇼핑 되세요!');
+    } else {
+      alert('필수 정보를 정확하게 입력 해주세요!');
+    }
   };
 
   return (
