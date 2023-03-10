@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useScroll } from '../../../functions/commonFunctions';
 import Product from '../Product/Product';
 import './ProductList.scss';
 
 const ProductList = props => {
   const { cateId, filteredProducts } = props;
-
+  const productRef = useRef(null);
+  const [scrollY, setScrollY] = useState(productRef.current);
+  useScroll(productRef);
   //장바구니 리스트
   const [basketList, setBasketList] = useState(
     JSON.parse(localStorage.getItem('basket')) || []
@@ -32,7 +35,7 @@ const ProductList = props => {
     <div className="productList">
       <div className="productListWrapper">
         <h2 className="productListTitle">{title}</h2>
-        <div className="products">
+        <div className="products" ref={productRef}>
           {filteredProducts.map(productDetail => (
             <Product
               key={productDetail.id}

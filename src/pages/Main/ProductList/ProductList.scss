@@ -7,10 +7,11 @@
   border-bottom: 1px solid #e7e7e3;
 
   .productListWrapper {
-    margin: 0 auto;
     .products {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      height: 600px;
+      overflow: scroll;
     }
   }
 }

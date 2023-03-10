@@ -10,7 +10,7 @@ const Main = () => {
   const cateId = Number(params.id);
 
   useEffect(() => {
-    fetch('/data/productsData.json', {
+    fetch('/data/productsData0.json', {
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
     })
