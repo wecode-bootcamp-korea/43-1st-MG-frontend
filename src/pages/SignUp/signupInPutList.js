@@ -20,7 +20,7 @@ export const SIGNUP_INPUT_LIST = [
   {
     id: 3,
     title: '비밀번호확인',
-    name: 'passwordAgain',
+    name: 'passwordConfirm',
     type: 'password',
     placeholder: '비밀번호를 한번 더 입력해주세요',
     check: 'passwordAgainCheck',
@@ -29,7 +29,7 @@ export const SIGNUP_INPUT_LIST = [
   {
     id: 4,
     title: '이름',
-    name: 'name',
+    name: 'userName',
     type: 'text',
     placeholder: '이름을 입력해주세요',
   },
@@ -48,7 +48,7 @@ export const SIGNUP_INPUT_LIST = [
   {
     id: 7,
     title: '생년월일',
-    name: 'birthday',
+    name: 'birth',
     type: 'number',
     placeholder: '예: 950105,  6자리 입력',
   },

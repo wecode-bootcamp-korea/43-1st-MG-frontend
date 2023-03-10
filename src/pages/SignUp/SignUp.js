@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SIGNUP_INPUT_LIST } from './signupInPutList';
 import './SignUp.scss';
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
-    passwordAgain: '',
-    name: '',
+    passwordConfirm: '',
+    userName: '',
+    gender: 'nothing',
     phoneNumber: '',
-    birthday: '',
+    birth: '',
     adress: '',
   });
+
   const {
     email,
     password,
-    passwordAgain,
-    name,
+    passwordConfirm,
+    userName,
     phoneNumber,
-    birthday,
+    birth,
     adress,
   } = inputValue;
+
+  console.log(inputValue);
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -66,18 +68,18 @@ const SignUp = () => {
       new RegExp(/^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/).test(
         password
       ),
-    passwordAgainCheck: !passwordAgain || password === passwordAgain,
-    namecheck: name.length >= 2,
+    passwordAgainCheck: !passwordConfirm || password === passwordConfirm,
+    userNamecheck: userName.length >= 2,
     phoneNumberCheak: phoneNumber.length >= 10 && phoneNumber.length <= 12,
-    birthdayCheck: birthday.length === 6,
+    birthCheck: birth.length === 6,
     adressCheck: adress.length > 8,
   };
 
-  const activeButton =
-    Object.values(conditions).every(value => value === true) && isAllChecked;
+  const activeButton = Object.values(conditions).every(value => value === true);
+  console.log('as', activeButton);
 
   const goToMain = () => {
-    if (activeButton) {
+    if (activeButton && isAllChecked) {
       fetch('http://10.58.52.73:8000/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -105,18 +107,20 @@ const SignUp = () => {
                     성별<span className="pinkStar">*</span>
                   </span>
                   <div className="gerderList">
-                    <div className="genderbox">
-                      <input type="radio" name="gender" />
-                      <span className="genderText">남자</span>
-                    </div>
-                    <div className="genderbox">
-                      <input type="radio" name="gender" />
-                      <span className="genderText">여자</span>
-                    </div>
-                    <div className="genderbox">
-                      <input type="radio" name="gender" />
-                      <span className="genderText">선택안함</span>
-                    </div>
+                    {GENDER_CHECK.map(gender => {
+                      return (
+                        <div key={gender.id} className="genderbox">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value={gender.value}
+                            checked={inputValue.gender === gender.value}
+                            onChange={handleInput}
+                          />
+                          <span className="genderText">{gender.text}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </>
               ) : (
@@ -205,3 +209,9 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+const GENDER_CHECK = [
+  { id: 1, text: '남자', value: 'male' },
+  { id: 2, text: '여자', value: 'female' },
+  { id: 3, text: '선택안함', value: 'nothing' },
+];
