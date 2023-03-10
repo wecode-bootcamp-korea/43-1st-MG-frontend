@@ -8,7 +8,7 @@ input[type='number']::-webkit-inner-spin-button {
   appearance: none;
 }
 
-.SignUp {
+.signUp {
   width: 700px;
   margin: 0 auto;
   padding-top: 180px;
@@ -59,7 +59,11 @@ input[type='number']::-webkit-inner-spin-button {
         font-size: 12px;
 
         input {
-          @include infoInputWithBtn;
+          width: 300px;
+          height: 46px;
+          padding: 0px 11px 1px 15px;
+          border: 1px solid rgb(189, 187, 187);
+          border-radius: 4px;
         }
 
         .guide {
@@ -73,13 +77,15 @@ input[type='number']::-webkit-inner-spin-button {
       }
     }
 
-    .password {
+    .inputWarp {
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 55px;
       padding: 10px 0;
 
       span {
+        width: 110px;
         font-size: 14px;
         font-weight: bold;
 
@@ -93,8 +99,12 @@ input[type='number']::-webkit-inner-spin-button {
         color: red;
         font-size: 12px;
 
-        input {
-          @include infoInput;
+        .userInput {
+          width: 300px;
+          height: 46px;
+          padding: 0px 11px 1px 15px;
+          border: 1px solid rgb(189, 187, 187);
+          border-radius: 4px;
         }
 
         .guide {
@@ -102,77 +112,11 @@ input[type='number']::-webkit-inner-spin-button {
           margin-left: 0;
           font-weight: 700;
         }
-
-        button {
-          @include infoButton;
-        }
-      }
-    }
-
-    .passwordAgain {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-
-        .pinkStar {
-          color: $pink;
-        }
-      }
-      .guideBox {
-        display: flex;
-        flex-direction: column;
-        color: red;
-        font-size: 12px;
-
-        input {
-          @include infoInput;
-        }
-
-        .guide {
-          margin-top: 5px;
-          margin-left: 0;
-          font-weight: 700;
-        }
-
-        button {
-          @include infoButton;
-        }
-      }
-    }
-
-    .name {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-
-        .pinkStar {
-          color: $pink;
-        }
-      }
-
-      input {
-        @include infoInput;
       }
 
       button {
         @include infoButton;
       }
-    }
-
-    .gender {
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
 
       .gentertext {
         font-size: 14px;
@@ -185,7 +129,8 @@ input[type='number']::-webkit-inner-spin-button {
 
       .gerderList {
         display: flex;
-        margin-left: 168px;
+        justify-content: space-between;
+        width: 300px;
 
         .genderbox {
           margin-right: 10px;
@@ -199,84 +144,6 @@ input[type='number']::-webkit-inner-spin-button {
         .genderText {
           font-size: 13px;
         }
-      }
-    }
-    .phoneNumber {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      span {
-        width: 80px;
-        font-size: 14px;
-        font-weight: bold;
-
-        .pinkStar {
-          color: $pink;
-        }
-      }
-
-      input {
-        @include infoInputWithBtn;
-        margin-right: 135px;
-      }
-
-      .guide {
-        margin-top: 5px;
-        margin-left: 100px;
-        font-weight: 700;
-      }
-    }
-    button {
-      @include infoButton;
-    }
-
-    .birthday {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-
-        .pinkStar {
-          color: $pink;
-        }
-      }
-
-      input {
-        @include infoInput;
-      }
-
-      button {
-        @include infoButton;
-      }
-    }
-
-    .adress {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-
-        .pinkStar {
-          color: $pink;
-        }
-      }
-
-      input {
-        @include infoInput;
-      }
-
-      button {
-        @include infoButton;
       }
     }
   }

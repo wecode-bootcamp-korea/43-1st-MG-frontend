@@ -81,15 +81,7 @@ const SignUp = () => {
       fetch('http://10.58.52.73:8000/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          passwordAgain: passwordAgain,
-          name: name,
-          phoneNumber: phoneNumber,
-          birthday: birthday,
-          adress: adress,
-        }),
+        body: JSON.stringify(inputValue),
       }).then(response => response.json());
       alert('가입이 완료되었습니다. 즐거운 쇼핑 되세요!');
     } else {
@@ -98,7 +90,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="SignUp">
+    <div className="signUp">
       <h1>회원가입</h1>
       <div className="required">
         <span className="pinkStar">*</span> 필수입력사항
@@ -106,7 +98,7 @@ const SignUp = () => {
       <form className="signUpForm">
         {SIGNUP_INPUT_LIST.map(list => {
           return (
-            <div className={list.name} key={list.id}>
+            <div className="inputWarp" key={list.id}>
               {list.title === '성별' ? (
                 <>
                   <span className="gentertext">
@@ -135,6 +127,7 @@ const SignUp = () => {
                   </span>
                   <div className="guideBox">
                     <input
+                      className="userInput"
                       value={inputValue[list.name]}
                       name={list.name}
                       placeholder={list.placeholder}
