@@ -6,6 +6,7 @@ import { Product } from './component/Product';
 
 const ShoppingBasket = () => {
   const [data, setData] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     fetch('/data/data.json', {
@@ -25,7 +26,7 @@ const ShoppingBasket = () => {
       </div>
       <div className="cartlistContainer">
         <div className="cartChoose">
-          <input type="checkbox" />
+          <input type="checkBox" className="checkAllBox" />
           <span className="cartChooseAllCheckText">
             전체선택(2/{data.length})
           </span>
@@ -37,14 +38,23 @@ const ShoppingBasket = () => {
         </div>
         <div className="cartProduct">
           {data.map(data => {
-            return <Product data={data} setData={setData} />;
+            return (
+              <Product
+                data={data}
+                setData={setData}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+              />
+            );
           })}
 
           <div className="cartTotalPrice">
             <div className="cartTotalPriceText">
               <span>제품가격</span>
-              <span> 123123원</span>
-              <span>+ 배송비 3,000원 = </span> <span>123123132원</span>
+              <span> {totalPrice.toLocaleString()}</span>
+              <span>+ 배송비 {DELIV_PRICE.toLocaleString()}원 = </span>
+              {(totalPrice + DELIV_PRICE).toLocaleString()}원
+              <span />
             </div>
           </div>
         </div>
@@ -54,3 +64,5 @@ const ShoppingBasket = () => {
 };
 
 export default ShoppingBasket;
+
+const DELIV_PRICE = 3000;
