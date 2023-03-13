@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ImgSlide from './ImgSlide/ImgSlide';
 import ProductList from './ProductList/ProductList';
 import './Main.scss';
@@ -7,10 +7,21 @@ import './Main.scss';
 const Main = () => {
   const [productsData, setProductsData] = useState([]);
   const params = useParams();
-  const cateId = Number(params.id);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const cateId = params.id ? Number(params.id) : 0;
+  let offset = searchParams.get('offset')
+    ? Number(searchParams.get('offset'))
+    : 0;
+  let limit = 10;
+
+  //실제 통신
+  //const prdUrl = `http://10.58.52.79:3000/products?categoryId=${cateId}&offset=${offset}&limit=${limit}`;
+
+  //dev 통신
+  const devUrl = `/data/productsData${cateId}&${offset}&${limit}.json`;
 
   useEffect(() => {
-    fetch('/data/productsData0.json', {
+    fetch(devUrl, {
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
     })
@@ -18,9 +29,13 @@ const Main = () => {
         if (res.ok) return res.json();
         else throw new Error('통신 에러 발생 !');
       })
-      .then(data => setProductsData(data))
+      .then(data => {
+        if (data.data.length > 0) {
+          setProductsData(data.data);
+        }
+      })
       .catch(err => alert(err));
-  }, []);
+  }, [offset]);
 
   const filteredProducts = productsData.filter(product => {
     if (cateId) return product.category_id === cateId;
@@ -33,7 +48,11 @@ const Main = () => {
         <ImgSlide />
       </section>
       <section className="products">
-        <ProductList cateId={cateId} filteredProducts={filteredProducts} />
+        <ProductList
+          cateId={cateId}
+          filteredProducts={filteredProducts}
+          limit={limit}
+        />
       </section>
     </article>
   );

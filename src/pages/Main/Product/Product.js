@@ -30,18 +30,18 @@ const Product = props => {
   };
 
   return (
-    <div className="product" id={productDetail.id}>
+    <div className="product" id={productDetail.products_id}>
       <img
         className="thumbnail"
-        src={`${PRODUCT_PATH}/${productDetail.thumbnail}`}
+        src={`${PRODUCT_PATH}/${productDetail.thumbnail}.jpg`}
         alt="product-thumbnail"
-        onClick={e => moveToProductDetail(productDetail.id)}
+        onClick={e => moveToProductDetail(productDetail.products_id)}
       />
       <button className="btnBasket" onClick={addToBasket}>
         <img className="imgBasket" src={Basket} alt="addToBasket" />
       </button>
       <p className="title" onClick={e => moveToProductDetail(productDetail.id)}>
-        {productDetail.name}
+        {productDetail.products_name}
       </p>
       <p className="price">{productDetail.price.toLocaleString('ko-KR')}원</p>
     </div>

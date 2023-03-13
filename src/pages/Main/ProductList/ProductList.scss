@@ -4,14 +4,17 @@
 .productList {
   margin: 0 10%;
   padding: 60px 16px;
-  border-bottom: 1px solid #e7e7e3;
 
-  .productListWrapper {
+  .wrapper {
+    position: relative;
+
     .products {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      height: 600px;
-      overflow: scroll;
     }
+  }
+
+  .pageList {
+    @include flexCenter;
   }
 }

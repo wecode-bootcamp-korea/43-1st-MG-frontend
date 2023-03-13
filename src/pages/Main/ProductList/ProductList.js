@@ -1,18 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useScroll } from '../../../functions/commonFunctions';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 import './ProductList.scss';
 
 const ProductList = props => {
-  const { cateId, filteredProducts } = props;
-  const productRef = useRef(null);
-  const [scrollY, setScrollY] = useState(productRef.current);
-  useScroll(productRef);
+  const { cateId, filteredProducts, limit } = props;
+  const loop = () => {
+    const result = [];
+    for (let i = 0; i < 3; i++) {
+      result.push(
+        <button>
+          <Link to={`/cateCode/${cateId}?offset=${i * 10}&limit=${limit}`}>
+            {i + 1}
+          </Link>
+        </button>
+      );
+    }
+    return result;
+  };
+
   //장바구니 리스트
   const [basketList, setBasketList] = useState(
     JSON.parse(localStorage.getItem('basket')) || []
   );
-
   let title = '';
   switch (cateId) {
     case 0:
@@ -33,12 +43,12 @@ const ProductList = props => {
   }
   return (
     <div className="productList">
-      <div className="productListWrapper">
-        <h2 className="productListTitle">{title}</h2>
-        <div className="products" ref={productRef}>
+      <div className="wrapper">
+        <h2 className="title">{title}</h2>
+        <div className="products">
           {filteredProducts.map(productDetail => (
             <Product
-              key={productDetail.id}
+              key={productDetail.products_id}
               productDetail={productDetail}
               basketList={basketList}
               setBasketList={setBasketList}
@@ -46,6 +56,7 @@ const ProductList = props => {
           ))}
         </div>
       </div>
+      <div>{loop()}</div>
     </div>
   );
 };

@@ -112,7 +112,10 @@ const Nav = props => {
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
             <div className="menu" key={cate.id}>
-              <Link className="link" to={`/cateCode/${cate.id}`}>
+              <Link
+                className="link"
+                to={`/cateCode/${cate.id}?offset=0&limit=10`}
+              >
                 <span className="cateName">{cate.name}</span>
               </Link>
             </div>
