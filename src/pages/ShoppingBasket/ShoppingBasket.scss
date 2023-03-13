@@ -55,20 +55,6 @@
         color: $gray;
         font-size: 20px;
       }
-
-      .deliteButton {
-        height: 30px;
-        border: none;
-        background-color: white;
-        @include cartText;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      button {
-      }
     }
     .cartDelivery {
       width: 660px;

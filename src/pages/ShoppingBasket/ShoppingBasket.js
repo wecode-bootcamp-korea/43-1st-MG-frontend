@@ -5,8 +5,11 @@ import cartImg from '../../assets/images/shopping-cart.png';
 import { Product } from './component/Product';
 
 const ShoppingBasket = () => {
-  const [data, setData] = useState([]);
+  const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const chooseItem = () => {
+    return productList.length;
+  };
 
   useEffect(() => {
     fetch('/data/data.json', {
@@ -14,7 +17,7 @@ const ShoppingBasket = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setData(data);
+        setProductList(data);
       });
   }, []);
 
@@ -28,20 +31,20 @@ const ShoppingBasket = () => {
         <div className="cartChoose">
           <input type="checkBox" className="checkAllBox" />
           <span className="cartChooseAllCheckText">
-            전체선택(2/{data.length})
+            전체선택(2/{productList.length})
           </span>
           <span className="cartBar">|</span>
-          <button className="deliteButton">선택삭제</button>
         </div>
         <div className="cartDelivery">
           <span>일반배송</span>
         </div>
         <div className="cartProduct">
-          {data.map(data => {
+          {productList.map(item => {
             return (
               <Product
-                data={data}
-                setData={setData}
+                data={item}
+                productList={productList}
+                setProductList={setProductList}
                 totalPrice={totalPrice}
                 setTotalPrice={setTotalPrice}
               />
