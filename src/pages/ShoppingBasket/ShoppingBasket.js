@@ -7,9 +7,7 @@ import { Product } from './component/Product';
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const chooseItem = () => {
-    return productList.length;
-  };
+  const [selectProductList, setSelectProductList] = useState([]);
 
   useEffect(() => {
     fetch('/data/data.json', {
@@ -47,6 +45,8 @@ const ShoppingBasket = () => {
                 setProductList={setProductList}
                 totalPrice={totalPrice}
                 setTotalPrice={setTotalPrice}
+                selectProductList={selectProductList}
+                setSelectProductList={setSelectProductList}
               />
             );
           })}

@@ -7,9 +7,10 @@ export const Product = ({
   productList,
   setProductList,
   setTotalPrice,
+  selectProductList,
+  setSelectProductList,
 }) => {
   const [count, setCount] = useState(data.productStock);
-  const [isCheck, setsetProductList] = useState(false);
 
   if (count < 1) {
     setCount(1);
@@ -18,6 +19,7 @@ export const Product = ({
   useEffect(() => {
     setTotalPrice(prev => (prev += data.productPrice * count));
   }, []);
+
   const handleName = e => {
     const { name } = e.target;
 
@@ -34,6 +36,11 @@ export const Product = ({
 
   function onRemove(id) {
     setProductList(productList.filter(item => item.productId !== id));
+  }
+
+  const toggleSelected = e => {
+    const { name } = e.target;
+    const 
   }
 
   return (
