@@ -8,14 +8,12 @@ const Login = () => {
     id: '',
     pw: '',
   });
+  const { id, pw } = inputValue;
 
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue(prev => ({ ...prev, [name]: value }));
   };
-  const id = inputValue.id;
-  const pw = inputValue.pw;
-
   const isValid = id.includes('@' && '.com') && pw.length >= 5;
 
   const goToMain = () => {
