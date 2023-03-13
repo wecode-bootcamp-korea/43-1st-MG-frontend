@@ -14,7 +14,7 @@ const ProductDetail = () => {
         </section>
         <div className="productGuide">
           <div className="guideName">해비추얼</div>
-          <div className="guideSubName">
+          <div div className="guideSubName">
             면역.피로개선 홍삼
             <img className="subNameShare" src={Share} alt="share" />
           </div>
