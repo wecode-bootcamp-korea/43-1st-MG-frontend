@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import ImgSlide from './ImgSlide/ImgSlide';
 import ProductList from './ProductList/ProductList';
 import './Main.scss';
+import Modal from '../../components/Modal/Modal';
 
 const Main = () => {
-  const [productsData, setProductsData] = useState([]);
+  const location = useLocation();
   const params = useParams();
+  const [productsData, setProductsData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const cateId = params.id ? Number(params.id) : 0;
   let offset = searchParams.get('offset')
     ? Number(searchParams.get('offset'))
@@ -52,8 +56,13 @@ const Main = () => {
           cateId={cateId}
           filteredProducts={filteredProducts}
           limit={limit}
+          location={location}
+          setIsOpenModal={setIsOpenModal}
         />
       </section>
+      {isOpenModal && (
+        <Modal usage="mainCart" setIsOpenModal={setIsOpenModal} />
+      )}
     </article>
   );
 };

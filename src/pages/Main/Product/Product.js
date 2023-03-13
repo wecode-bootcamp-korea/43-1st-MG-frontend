@@ -1,34 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Basket from '../../../assets/images/main/basket.png';
 import './Product.scss';
 
 const Product = props => {
   const navigate = useNavigate();
-  const { productDetail, basketList, setBasketList } = props;
+  const { productDetail, setIsOpenModal } = props;
 
   const moveToProductDetail = id => {
     navigate(`/productDetail/${id}`);
   };
 
-  const addToBasket = () => {
-    let basketData = basketList.length > 0 ? basketList : [];
-
-    if (basketData.filter(item => item.id === productDetail.id).length > 0) {
-      basketData.map(item => {
-        if (item.id === productDetail.id) {
-          return (item.quantity += 1);
-        } else return null;
-      });
-    } else {
-      basketData.push({ id: productDetail.id, quantity: 1 });
-    }
-
-    localStorage.setItem('basket', JSON.stringify(basketData));
-    alert('상품이 장바구니에 추가되었습니다.');
-    setBasketList(basketData);
+  const openModal = () => {
+    setIsOpenModal(prev => !prev);
   };
-
   return (
     <div className="product" id={productDetail.products_id}>
       <img
@@ -37,8 +23,13 @@ const Product = props => {
         alt="product-thumbnail"
         onClick={e => moveToProductDetail(productDetail.products_id)}
       />
-      <button className="btnBasket" onClick={addToBasket}>
-        <img className="imgBasket" src={Basket} alt="addToBasket" />
+      <button className="btnBasket">
+        <img
+          className="imgBasket"
+          src={Basket}
+          alt="addToBasket"
+          onClick={openModal}
+        />
       </button>
       <p className="title" onClick={e => moveToProductDetail(productDetail.id)}>
         {productDetail.products_name}

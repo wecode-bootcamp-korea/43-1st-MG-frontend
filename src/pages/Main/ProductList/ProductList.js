@@ -4,7 +4,7 @@ import Product from '../Product/Product';
 import './ProductList.scss';
 
 const ProductList = props => {
-  const { cateId, filteredProducts, limit } = props;
+  const { cateId, filteredProducts, limit, location, setIsOpenModal } = props;
   const loop = () => {
     const result = [];
     for (let i = 0; i < 3; i++) {
@@ -19,10 +19,6 @@ const ProductList = props => {
     return result;
   };
 
-  //장바구니 리스트
-  const [basketList, setBasketList] = useState(
-    JSON.parse(localStorage.getItem('basket')) || []
-  );
   let title = '';
   switch (cateId) {
     case 0:
@@ -50,8 +46,8 @@ const ProductList = props => {
             <Product
               key={productDetail.products_id}
               productDetail={productDetail}
-              basketList={basketList}
-              setBasketList={setBasketList}
+              location={location}
+              setIsOpenModal={setIsOpenModal}
             />
           ))}
         </div>
