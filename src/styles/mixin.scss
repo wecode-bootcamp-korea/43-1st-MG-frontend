@@ -1,11 +1,43 @@
 @mixin flexCenter {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 @mixin flexSort($justifyContent, $alignItems) {
   display: flex;
-  justify-content: $justifyContent;
   align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin infoInputWithBtn {
+  width: 300px;
+  height: 46px;
+  margin-left: 101px;
+  padding: 0px 11px 1px 15px;
+  border: 1px solid rgb(189, 187, 187);
+  border-radius: 4px;
+}
+
+@mixin infoInput {
+  width: 300px;
+  height: 46px;
+  margin-right: 135px;
+  padding: 0px 11px 1px 15px;
+  border: 1px solid rgb(189, 187, 187);
+  border-radius: 4px;
+}
+
+@mixin infoButton {
+  width: 110px;
+  height: 46px;
+  padding: 0px 10px;
+  border: 2px solid $blue;
+  border-radius: 4px;
+  background-color: white;
+  color: $blue;
+  font-weight: bolder;
+  &:hover {
+    cursor: pointer;
+  }
 }

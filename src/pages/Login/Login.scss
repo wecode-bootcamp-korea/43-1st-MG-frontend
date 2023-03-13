@@ -1,0 +1,78 @@
+.login {
+  width: 100%;
+  height: 100%;
+  padding-top: 180px;
+  font-family: 'SUIT', sans-serif;
+  text-align: center;
+  word-break: keep-all;
+
+  .loginWelcome {
+    width: 400px;
+    height: 67px;
+    margin: 0 auto;
+    font-size: 24px;
+
+    p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+  }
+
+  .loginMain {
+    width: 400px;
+    height: 421px;
+    margin: 0 auto;
+    font-size: 14px;
+
+    .loginMainInputId {
+      width: 400px;
+      height: 60px;
+      margin: 0 0 16px 0;
+      padding: 11px 13px 11px 13px;
+      border: 1px solid #dddddd;
+      background-color: white;
+      font-size: 14px;
+    }
+
+    .loginMainInputPw {
+      width: 400px;
+      height: 60px;
+      margin: 0 0 16px 0;
+      padding: 11px 13px 11px 13px;
+      border: 1px solid #dddddd;
+      background-color: white;
+      font-size: 14px;
+    }
+
+    .buttonLogin {
+      width: 400px;
+      height: 60px;
+      margin: 0 0 16px 0;
+      padding: 12px 12px 12px 12px;
+      border: 1px solid black;
+      background-color: black;
+      color: white;
+    }
+
+    .buttonLoginDisabled {
+      width: 400px;
+      height: 60px;
+      margin: 0 0 16px 0;
+      padding: 12px 12px 12px 12px;
+      border: 1px solid black;
+      background-color: grey;
+      color: white;
+    }
+
+    .loginButtonMake {
+      width: 400px;
+      height: 60px;
+      padding: 12px 12px 12px 12px;
+      border: 1px solid black;
+      background-color: white;
+    }
+  }
+}
