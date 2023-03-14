@@ -3,44 +3,24 @@ import closeImg from '../../../assets/images/cross.png';
 import './Product.scss';
 
 export const Product = ({
-  data,
-  productList,
+  data, //객체 하나하나의 값
+  productList, // 배열 전체
   setProductList,
-  setTotalPrice,
-  selectProductList,
-  setSelectProductList,
 }) => {
-  const [count, setCount] = useState(data.productStock);
+  const handleCount = value => {
+    if (Number(data.productStock) + value === 0) return;
 
-  if (count < 1) {
-    setCount(1);
-  }
-
-  useEffect(() => {
-    setTotalPrice(prev => (prev += data.productPrice * count));
-  }, []);
-
-  const handleName = e => {
-    const { name } = e.target;
-
-    if (name === 'plus') {
-      setCount(count + 1);
-      setTotalPrice(prev => prev + data.productPrice);
-    } else {
-      setCount(count - 1);
-      if (count > 1) {
-        setTotalPrice(prev => prev - data.productPrice);
-      }
-    }
+    const newArray = productList.map(product => {
+      const { productId, productStock } = product;
+      if (productId === data.productId)
+        return { ...product, productStock: productStock + value };
+      return product;
+    });
+    setProductList(newArray);
   };
 
   function onRemove(id) {
     setProductList(productList.filter(item => item.productId !== id));
-  }
-
-  const toggleSelected = e => {
-    const { name } = e.target;
-    const 
   }
 
   return (
@@ -55,17 +35,25 @@ export const Product = ({
       </div>
       <div className="count">
         <div className="countInput">
-          <button name="minus" onClick={handleName}>
+          <button
+            onClick={() => {
+              handleCount(-1);
+            }}
+          >
             -
           </button>
-          <div className="countInputText">{count}</div>
-          <button name="plus" onClick={handleName}>
+          <div className="countInputText">{data.productStock}</div>
+          <button
+            onClick={() => {
+              handleCount(1);
+            }}
+          >
             +
           </button>
         </div>
       </div>
       <div className="productAllprice">
-        {(data.productPrice * count).toLocaleString()}원
+        {(data.productPrice * data.productStock).toLocaleString()}원
       </div>
       <img
         name={data.productId}

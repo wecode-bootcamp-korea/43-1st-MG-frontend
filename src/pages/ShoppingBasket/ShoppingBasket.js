@@ -6,8 +6,6 @@ import { Product } from './component/Product';
 
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [selectProductList, setSelectProductList] = useState([]);
 
   useEffect(() => {
     fetch('/data/data.json', {
@@ -18,6 +16,11 @@ const ShoppingBasket = () => {
         setProductList(data);
       });
   }, []);
+
+  const totalSumPrice = productList.reduce(
+    (acc, cur) => acc + cur.productStock * cur.productPrice,
+    0
+  );
 
   return (
     <div className="cartContainer">
@@ -43,10 +46,6 @@ const ShoppingBasket = () => {
                 data={item}
                 productList={productList}
                 setProductList={setProductList}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
-                selectProductList={selectProductList}
-                setSelectProductList={setSelectProductList}
               />
             );
           })}
@@ -54,9 +53,9 @@ const ShoppingBasket = () => {
           <div className="cartTotalPrice">
             <div className="cartTotalPriceText">
               <span>제품가격</span>
-              <span> {totalPrice.toLocaleString()}</span>
+              <span> {totalSumPrice.toLocaleString()}</span>
               <span>+ 배송비 {DELIV_PRICE.toLocaleString()}원 = </span>
-              {(totalPrice + DELIV_PRICE).toLocaleString()}원
+              {(totalSumPrice + DELIV_PRICE).toLocaleString()}원
               <span />
             </div>
           </div>
