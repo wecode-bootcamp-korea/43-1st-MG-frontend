@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 import './ProductList.scss';
@@ -10,7 +10,10 @@ const ProductList = props => {
     for (let i = 0; i < 3; i++) {
       result.push(
         <button>
-          <Link to={`/cateCode/${cateId}?offset=${i * 10}&limit=${limit}`}>
+          <Link
+            className="pageBtn"
+            to={`/cateCode/${cateId}?offset=${i * 10}&limit=${limit}`}
+          >
             {i + 1}
           </Link>
         </button>
@@ -19,28 +22,17 @@ const ProductList = props => {
     return result;
   };
 
-  let title = '';
-  switch (cateId) {
-    case 0:
-      title = '전체상품';
-      break;
-    case 1:
-      title = '여성 영양제';
-      break;
-    case 2:
-      title = '남성 영양제';
-      break;
-    case 3:
-      title = '아이 영양제';
-      break;
-    default:
-      title = '전체상품';
-      break;
-  }
+  const listTitle = {
+    0: '전체상품',
+    1: '여성 영양제',
+    2: '남성 영양제',
+    3: '아이 영양제',
+  };
+
   return (
     <div className="productList">
       <div className="wrapper">
-        <h2 className="title">{title}</h2>
+        <h2 className="title">{listTitle[cateId]}</h2>
         <div className="products">
           {filteredProducts.map(productDetail => (
             <Product
@@ -52,7 +44,7 @@ const ProductList = props => {
           ))}
         </div>
       </div>
-      <div>{loop()}</div>
+      <div className="pageNation">page : {loop()}</div>
     </div>
   );
 };

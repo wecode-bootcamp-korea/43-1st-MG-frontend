@@ -17,4 +17,13 @@
   .pageList {
     @include flexCenter;
   }
+
+  .pageNation {
+    margin-top: 40px;
+
+    .pageBtn {
+      text-decoration: none;
+      font-size: $middle;
+    }
+  }
 }
