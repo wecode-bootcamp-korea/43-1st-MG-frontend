@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HomeLogo from '../../assets/images/nav/home-logo.svg';
 import Basket from '../../assets/images/nav/shopping-bag.png';
@@ -8,12 +8,21 @@ import './Nav.scss';
 const Nav = props => {
   //아래 state들은 동적라우팅을 학습하게 되면 사용할 예정입니다.
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [basket, setBasket] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [basket, setBasket] = useState(
+    JSON.parse(localStorage.getItem('basket')) || []
+  );
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
   const loginToken = localStorage.getItem('signup_token');
+
+  useEffect(() => {
+    setInterval(() => {
+      if (JSON.stringify(basket) !== localStorage.getItem('basket')) {
+        setBasket(JSON.parse(localStorage.getItem('basket')));
+      }
+    }, 1000);
+  }, [basket]);
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
@@ -92,22 +101,23 @@ const Nav = props => {
             />
           </div>
           <div className="basket">
-            <img src={Basket} alt="basket" />
-            {basket.length > 0 && (
-              <span className="basketCount">{basket.length}</span>
-            )}
+            <Link to="/shoppingBasket">
+              <img src={Basket} alt="basket" />
+            </Link>
+            {basket && <span className="basketCount">{basket.length}</span>}
           </div>
         </div>
       </div>
       <div className="headerCate">
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
-            <div
-              className="menu"
-              key={cate.id}
-              onClick={() => setSelectedCategory(cate.name)}
-            >
-              {cate.name}
+            <div className="menu" key={cate.id}>
+              <Link
+                className="link"
+                to={`/cateCode/${cate.id}?offset=0&limit=10`}
+              >
+                <span className="cateName">{cate.name}</span>
+              </Link>
             </div>
           ))}
         </div>
@@ -129,8 +139,8 @@ const SIGNUP_USER_LIST = [
 ];
 
 const CATE_LIST = [
-  { id: 1, name: 'All' },
-  { id: 2, name: 'Women' },
-  { id: 3, name: 'Man' },
-  { id: 4, name: 'Child' },
+  { id: 0, name: 'All' },
+  { id: 1, name: 'Women' },
+  { id: 2, name: 'Man' },
+  { id: 3, name: 'Kids' },
 ];

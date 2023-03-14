@@ -1,0 +1,29 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+
+.productList {
+  margin: 0 10%;
+  padding: 60px 16px;
+
+  .wrapper {
+    position: relative;
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  .pageList {
+    @include flexCenter;
+  }
+
+  .pageNation {
+    margin-top: 40px;
+
+    .pageBtn {
+      text-decoration: none;
+      font-size: $middle;
+    }
+  }
+}
