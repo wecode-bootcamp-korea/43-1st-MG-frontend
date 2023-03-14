@@ -7,33 +7,57 @@ import { Product } from './component/Product';
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
 
+  const toggleSelected = value => {
+    const next = productList.map(product => {
+      if (product.productId === value) {
+        return { ...product, checkedState: !product.checkedState };
+      }
+      return product;
+    });
+
+    setProductList(next);
+  };
+
+  const temp = e => {
+    const next = productList.map(product => {
+      if (e.target.checked) return { ...product, checkedState: true };
+      else return { ...product, checkedState: false };
+    });
+    setProductList(next);
+  };
+
+  const howManyTrue = productList.filter(row => {
+    if (row.checkedState)
+      return { productId: row.productId, quantity: row.quantity };
+  });
+  const trueCount = howManyTrue.length;
+
   useEffect(() => {
-    fetch('/data/data.json', {
-      method: 'GET',
-    })
+    fetch('/data/data.json')
       .then(res => res.json())
       .then(data => {
         setProductList(data);
       });
   }, []);
 
-  const totalSumPrice = productList.reduce(
-    (acc, cur) => acc + cur.productStock * cur.productPrice,
+  const totalSumPrice = howManyTrue.reduce(
+    (acc, cur) => acc + cur.quantity * cur.productPrice,
     0
   );
 
   return (
-    <div className="cartContainer">
+    <div className="ShoppingBasket">
       <div className="titleArea">
         <p>장바구니</p>
         <img src={cartImg} alt="cart" />
       </div>
       <div className="cartlistContainer">
         <div className="cartChoose">
-          <input type="checkBox" className="checkAllBox" />
+          <input type="checkBox" className="checkAllBox" onClick={temp} />
           <span className="cartChooseAllCheckText">
-            전체선택(2/{productList.length})
+            전체선택({trueCount}/{productList.length})
           </span>
+
           <span className="cartBar">|</span>
         </div>
         <div className="cartDelivery">
@@ -46,6 +70,8 @@ const ShoppingBasket = () => {
                 data={item}
                 productList={productList}
                 setProductList={setProductList}
+                checkedState={item.checkedState}
+                toggleSelected={toggleSelected}
               />
             );
           })}

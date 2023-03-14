@@ -2,26 +2,47 @@ import React from 'react';
 import closeImg from '../../../assets/images/cross.png';
 import './Product.scss';
 
-export const Product = ({ data, productList, setProductList }) => {
+export const Product = ({
+  data,
+  productList,
+  setProductList,
+  checkedState,
+  toggleSelected,
+}) => {
   const handleCount = value => {
-    if (Number(data.productStock) + value === 0) return;
+    if (Number(data.quantity) + value === 0) return;
 
     const newArray = productList.map(product => {
-      const { productId, productStock } = product;
+      const { productId, quantity } = product;
       if (productId === data.productId)
-        return { ...product, productStock: productStock + value };
+        return { ...product, quantity: quantity + value };
       return product;
     });
     setProductList(newArray);
   };
 
+  // function onRemove(id) {
+  //   setProductList(productList.filter(item => item.productId !== id));
+
   function onRemove(id) {
-    setProductList(productList.filter(item => item.productId !== id));
+    fetch('http://10.58.52.215:3000', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify(
+        setProductList(productList.filter(item => item.productId !== id))
+      ),
+    }).then(response => response.json());
   }
 
   return (
     <div className="inCartProducts" key={data.productId}>
-      <input className="inCartCheck" type="checkbox" value={data.productId} />
+      <input
+        className="inCartCheck"
+        type="checkbox"
+        value={data.productId}
+        checked={checkedState}
+        onChange={() => toggleSelected(data.productId)}
+      />
       <img src="./images/github.png" alt="productImage" />
       <div product className="inCartProductName">
         <span className="productNameText">{data.productName}</span>
@@ -38,7 +59,7 @@ export const Product = ({ data, productList, setProductList }) => {
           >
             -
           </button>
-          <div className="countInputText">{data.productStock}</div>
+          <div className="countInputText">{data.quantity}</div>
           <button
             onClick={() => {
               handleCount(1);
@@ -49,7 +70,7 @@ export const Product = ({ data, productList, setProductList }) => {
         </div>
       </div>
       <div className="productAllprice">
-        {(data.productPrice * data.productStock).toLocaleString()}원
+        {(data.productPrice * data.quantity).toLocaleString()}원
       </div>
       <img
         name={data.productId}
