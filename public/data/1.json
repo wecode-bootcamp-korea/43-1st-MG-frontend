@@ -1,0 +1,12 @@
+{
+  "data": {
+    "productId": "",
+    "thumbnail": "",
+    "categoryId": "",
+    "categoryName": "Women",
+    "productName": "productName",
+    "description": "이것은 description의 자리입니다.",
+    "price": 5000,
+    "q": 4
+  }
+}

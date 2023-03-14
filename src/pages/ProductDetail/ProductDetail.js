@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductDetail.scss';
 import Share from '../../assets/images/share.png';
 import question from '../../assets/images/question.png';
 import plover from '../../assets/images/plover.png';
+import { useParams } from 'react-router-dom';
+import ProductOption from './ProductOptionPrice/ProductOption';
 
 const ProductDetail = () => {
+  const params = useParams();
+  const { productId } = params;
+
+  const [product, setProduct] = useState();
+  console.log(product);
+  useEffect(() => {
+    fetch(`/data/${productId}.json`)
+      .then(response => response.json())
+      .then(result => setProduct(result.data));
+  }, [productId]);
   return (
     <div className="productDetail">
       <div className="productExplain">
@@ -13,12 +25,16 @@ const ProductDetail = () => {
           <img className="imgPlover" src={plover} alt="github" />
         </section>
         <div className="productGuide">
-          <div className="guideName">해비추얼</div>
-          <div div className="guideSubName">
-            면역.피로개선 홍삼
+          <div className="guideName"> {product?.categoryId}</div>
+          <div className="guideSubName">
+            {/* 면역.피로개선 홍삼 */}
+            {product?.productName}
             <img className="subNameShare" src={Share} alt="share" />
           </div>
-          <div className="guideExplain">면역력 증진과 피로개선에 도움</div>
+          <div className="guideExplain">
+            {/* 면역력 증진과 피로개선에 도움 */}
+            {product?.description}
+          </div>
           <div className="guideSend">
             배송비 정책
             <img className="sendNameQuestion" src={question} alt="share" />
@@ -28,11 +44,7 @@ const ProductDetail = () => {
               <span>수량</span>
               <select className="boxChoice">
                 <option selected>-[필수] 옵션을 선택해 주세요.</option>
-                <option>1</option>
-                <option>5</option>
-                <option>10</option>
-                <option>30</option>
-                <option>50</option>
+                <ProductOption product={product} />
               </select>
             </div>
           </div>
@@ -51,6 +63,7 @@ const ProductDetail = () => {
         </div>
       </div>
     </div>
+    // )}}
   );
 };
 
