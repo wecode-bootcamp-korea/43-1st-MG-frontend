@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import closeImg from '../../../assets/images/cross.png';
 import './Product.scss';
 
-export const Product = ({
-  data, //객체 하나하나의 값
-  productList, // 배열 전체
-  setProductList,
-}) => {
+export const Product = ({ data, productList, setProductList }) => {
   const handleCount = value => {
     if (Number(data.productStock) + value === 0) return;
 
