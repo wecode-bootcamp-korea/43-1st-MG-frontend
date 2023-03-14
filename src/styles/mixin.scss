@@ -10,6 +10,11 @@
   justify-content: $justifyContent;
 }
 
+@mixin cartText {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 @mixin infoInputWithBtn {
   width: 300px;
   height: 46px;
