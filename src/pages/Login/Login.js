@@ -1,29 +1,45 @@
 import React, { useState } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
-
 const Login = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
-    id: '',
-    pw: '',
+    email: '',
+    password: '',
   });
-  const { id, pw } = inputValue;
-
+  const { email, password } = inputValue;
   const handleInput = e => {
     const { name, value } = e.target;
-    setInputValue(prev => ({ ...prev, [name]: value }));
+    setInputValue({ ...inputValue, [name]: value });
   };
-  const isValid = id.includes('@' && '.com') && pw.length >= 5;
-
+  const isValid = email.includes('@' && '.com') && password.length >= 5;
   const goToMain = () => {
+    console.log(email, password);
     if (isValid) {
+      fetch('http://10.58.52.209:3000/users/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8', //필수로 넣어야함
+        },
+        body: JSON.stringify({
+          // 자바스크립트를 json 형태로 보내는 것
+          email: inputValue.email,
+          password: inputValue.password,
+        }),
+      }) //요청
+        .then(response => response.json())
+        // .then(data => console.log(data));
+        .then(response => {
+          console.log(response);
+          if (response.accessToken) {
+            localStorage.setItem('login-token', response.accessToken);
+          }
+        });
       navigate('/main');
     } else {
       alert('로그인 정보를 올바르게 입력하세요');
     }
   };
-
   return (
     <div className="login">
       <div className="loginWelcome">
@@ -35,8 +51,8 @@ const Login = () => {
             className="loginMainInputId"
             type="text"
             placeholder="이메일을 입력해주세요"
-            name="id"
-            value={id}
+            name="email"
+            value={email}
             onChange={handleInput}
           />
           <br />
@@ -44,15 +60,15 @@ const Login = () => {
             className="loginMainInputPw"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            name="pw"
-            value={pw}
+            name="password"
+            value={password}
             onChange={handleInput}
           />
         </div>
         <div>
           <button
             className={isValid ? 'buttonLogin' : 'buttonLoginDisabled'}
-            disabled={id === '' || pw === '' ? true : false}
+            disabled={email === '' || password === '' ? true : false}
             onClick={goToMain}
           >
             로그인

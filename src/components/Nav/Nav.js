@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import HomeLogo from '../../assets/images/nav/home-logo.svg';
+import HomeLogo from '../../assets/images/nav/weeklyLogo.png';
 import Basket from '../../assets/images/nav/shopping-bag.png';
 import Search from '../../assets/images/nav/search.png';
 import './Nav.scss';
@@ -13,7 +13,7 @@ const Nav = props => {
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
-  const loginToken = localStorage.getItem('signup_token');
+  const loginToken = localStorage.getItem('login-token');
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
@@ -23,12 +23,29 @@ const Nav = props => {
 
   const handleLink = (e, path) => {
     if (e.target.title === '로그아웃') {
-      localStorage.removeItem('signup_token');
+      localStorage.removeItem('login-token');
       navigate('/');
     } else {
       navigate(path);
     }
   };
+
+  const getCartListFetch = () => {
+    fetch('http://10.58.52.209:3000/users/cart', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: loginToken,
+      },
+    })
+      .then(response => response.json())
+      .then(data => setBasket(data.data[0].products));
+  };
+
+  useEffect(() => {
+    if (loginToken) getCartListFetch();
+  }, []);
+
   return (
     <header className="nav">
       <div className="header">
@@ -72,8 +89,8 @@ const Nav = props => {
         </div>
         <div className="main">
           <div>
-            <Link to="/">
-              <img src={HomeLogo} alt="home-logo" />
+            <Link className="home" to="/">
+              <img className="logo" src={HomeLogo} alt="home-logo" />
             </Link>
           </div>
           <div className="searchArea">
