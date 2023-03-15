@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Basket from '../../../assets/images/main/basket.png';
 import './Product.scss';
 
-const Product = props => {
+const Product = ({ productDetail, setIsOpenModal, loginToken }) => {
   const navigate = useNavigate();
-  const { productDetail, setIsOpenModal, loginToken } = props;
 
   const moveToProductDetail = id => {
     navigate(`/productDetail/${id}`);
