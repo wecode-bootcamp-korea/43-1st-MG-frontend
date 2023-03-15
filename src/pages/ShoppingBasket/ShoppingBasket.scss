@@ -129,4 +129,18 @@
       text-align: right;
     }
   }
+  .cartItemOrder {
+    margin-top: 15px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+
+    &:hover {
+      transition: 0.9s;
+      background-color: white;
+      color: black;
+      cursor: pointer;
+    }
+  }
 }

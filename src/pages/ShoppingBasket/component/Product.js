@@ -27,7 +27,10 @@ export const Product = ({
   function onRemove(id) {
     fetch('http://10.58.52.215:3000', {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('login-token'),
+      },
       body: JSON.stringify(
         setProductList(productList.filter(item => item.productId !== id))
       ),

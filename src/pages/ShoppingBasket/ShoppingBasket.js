@@ -85,6 +85,7 @@ const ShoppingBasket = () => {
               <span />
             </div>
           </div>
+          <button className="cartItemOrder">구매하기</button>
         </div>
       </div>
     </div>
