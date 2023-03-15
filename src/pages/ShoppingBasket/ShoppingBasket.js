@@ -18,7 +18,7 @@ const ShoppingBasket = () => {
     setProductList(next);
   };
 
-  const temp = e => {
+  const allCheckButtonChange = e => {
     const next = productList.map(product => {
       if (e.target.checked) return { ...product, checkedState: true };
       else return { ...product, checkedState: false };
@@ -26,11 +26,11 @@ const ShoppingBasket = () => {
     setProductList(next);
   };
 
-  const howManyTrue = productList.filter(row => {
+  const howManyTrueArray = productList.filter(row => {
     if (row.checkedState)
       return { productId: row.productId, quantity: row.quantity };
   });
-  const trueCount = howManyTrue.length;
+  const trueCount = howManyTrueArray.length;
 
   useEffect(() => {
     fetch('/data/data.json')
@@ -40,20 +40,24 @@ const ShoppingBasket = () => {
       });
   }, []);
 
-  const totalSumPrice = howManyTrue.reduce(
+  const totalSumPrice = howManyTrueArray.reduce(
     (acc, cur) => acc + cur.quantity * cur.productPrice,
     0
   );
 
   return (
-    <div className="ShoppingBasket">
+    <div className="shoppingbasket">
       <div className="titleArea">
         <p>장바구니</p>
         <img src={cartImg} alt="cart" />
       </div>
       <div className="cartlistContainer">
         <div className="cartChoose">
-          <input type="checkBox" className="checkAllBox" onClick={temp} />
+          <input
+            type="checkBox"
+            className="checkAllBox"
+            onClick={allCheckButtonChange}
+          />
           <span className="cartChooseAllCheckText">
             전체선택({trueCount}/{productList.length})
           </span>
