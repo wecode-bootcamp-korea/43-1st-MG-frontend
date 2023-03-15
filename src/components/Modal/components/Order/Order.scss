@@ -19,6 +19,13 @@
     &::-webkit-scrollbar-thumb {
       background-color: rgb(113, 113, 113);
     }
+    .cartListMap {
+      display: flex;
+      .cartListProductMap {
+      }
+      .artListQuentityMap {
+      }
+    }
   }
   .orderListInfo {
     display: flex;
