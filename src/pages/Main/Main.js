@@ -10,12 +10,12 @@ const Main = () => {
 
   const params = useParams();
   const cateId = params.id ? Number(params.id) : 0;
+  const searchKeyword = params.keyword ? params.keyword : '';
 
   const [productsData, setProductsData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [cateTotalCount, setCateTotalCount] = useState([]);
-
   let totalCount = 0;
   if (cateTotalCount.length > 0) {
     //카테고리별 총 개수
@@ -29,9 +29,14 @@ const Main = () => {
     : 0;
   let limit = 10;
 
-  const url = `http://10.58.52.209:3000/products?categoryId=${cateId}&offset=${offset}&limit=${limit}`;
-  //const url = `/data/productsData${cateId}&${offset}&${limit}.json`;
   const getAllProdData = () => {
+    let url = '';
+    if (searchKeyword)
+      url = `http://10.58.52.209:3000/products?categoryId=0&offset=0&limit=100000`;
+    else
+      url = `http://10.58.52.209:3000/products?categoryId=${cateId}&offset=${offset}&limit=${limit}`;
+    //const url = `/data/productsData${cateId}&${offset}&${limit}.json`;
+
     fetch(url, {
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
@@ -42,7 +47,13 @@ const Main = () => {
       })
       .then(data => {
         if (data.data.length > 0) {
-          if (offset === 0) {
+          if (searchKeyword !== '') {
+            const filteredProducts = data.data.filter(data =>
+              data.products_name.includes(searchKeyword)
+            );
+
+            setProductsData(filteredProducts);
+          } else if (offset === 0) {
             document.documentElement.scrollTop = 0;
             setProductsData(data.data);
           } else {
@@ -55,7 +66,7 @@ const Main = () => {
 
   useEffect(() => {
     getAllProdData();
-  }, [cateId, offset]);
+  }, [cateId, offset, searchKeyword]);
 
   //카테고리별 상품 개수 조회
   useEffect(() => {
@@ -88,35 +99,41 @@ const Main = () => {
       });
   }, []);
 
+  const scrollListener = () => {
+    if (
+      document.body.scrollHeight - document.documentElement.scrollTop <=
+      1420
+    ) {
+      const nextOffset = offset + limit;
+      if (nextOffset < totalCount) {
+        navigate(`/cateCode/${cateId}?offset=${nextOffset}&limit=${limit}`);
+      }
+    }
+  };
   //무한스크롤을 적용해보자..
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (
-        document.body.scrollHeight - document.documentElement.scrollTop <=
-        1420
-      ) {
-        const nextOffset = offset + limit;
-        if (nextOffset < totalCount) {
-          navigate(`/cateCode/${cateId}?offset=${nextOffset}&limit=${limit}`);
-        }
-      }
-    });
+    if (!searchKeyword) {
+      window.addEventListener('scroll', scrollListener);
+      return () => window.removeEventListener('scroll', scrollListener);
+    }
   }, [productsData]);
-
   return (
     <article className="main">
       <section className="slide">
         <ImgSlide />
       </section>
       <section className="products">
-        <ProductList
-          cateId={cateId}
-          filteredProducts={productsData}
-          limit={limit}
-          setIsOpenModal={setIsOpenModal}
-          loginToken={loginToken}
-          cateTotalCount={cateTotalCount}
-        />
+        {productsData && (
+          <ProductList
+            cateId={cateId}
+            filteredProducts={productsData}
+            limit={limit}
+            setIsOpenModal={setIsOpenModal}
+            loginToken={loginToken}
+            cateTotalCount={cateTotalCount}
+            searchKeyword={searchKeyword}
+          />
+        )}
       </section>
       {isOpenModal && (
         <Modal usage="mainCart" setIsOpenModal={setIsOpenModal} />

@@ -3,7 +3,13 @@ import Product from '../Product/Product';
 import './ProductList.scss';
 
 const ProductList = props => {
-  const { cateId, filteredProducts, setIsOpenModal, loginToken } = props;
+  const {
+    cateId,
+    filteredProducts,
+    setIsOpenModal,
+    loginToken,
+    searchKeyword,
+  } = props;
 
   const listTitle = {
     0: '전체상품',
@@ -15,7 +21,11 @@ const ProductList = props => {
   return (
     <div className="productList">
       <div className="wrapper">
-        <h2 className="title">{listTitle[cateId]}</h2>
+        <h2 className="title">
+          {searchKeyword
+            ? `'${searchKeyword}'에 대한 검색 결과`
+            : listTitle[cateId]}
+        </h2>
         <div className="products">
           {filteredProducts.map(productDetail => (
             <Product

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HomeLogo from '../../assets/images/nav/home-logo.svg';
 import Basket from '../../assets/images/nav/shopping-bag.png';
@@ -6,7 +6,7 @@ import Search from '../../assets/images/nav/search.png';
 import './Nav.scss';
 
 const Nav = props => {
-  //아래 state들은 동적라우팅을 학습하게 되면 사용할 예정입니다.
+  const searchRef = useRef();
   const [searchKeyword, setSearchKeyword] = useState('');
   const [basket, setBasket] = useState(
     JSON.parse(localStorage.getItem('basket')) || []
@@ -27,6 +27,7 @@ const Nav = props => {
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
       setSearchKeyword(inputSearchVal);
+      navigate(`/search/${inputSearchVal}`);
     }
   };
 
@@ -38,6 +39,11 @@ const Nav = props => {
       navigate(path);
     }
   };
+
+  const removeSearchKeyword = () => {
+    searchRef.current.value = '';
+  };
+
   return (
     <header className="nav">
       <div className="header">
@@ -92,6 +98,7 @@ const Nav = props => {
               className="search"
               onChange={e => setInputSearchVal(e.target.value)}
               onKeyUp={handleSearch}
+              ref={searchRef}
             />
             <img
               src={Search}
@@ -112,12 +119,14 @@ const Nav = props => {
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
             <div className="menu" key={cate.id}>
-              <Link
-                className="link"
-                to={`/cateCode/${cate.id}?offset=0&limit=10`}
-              >
-                <span className="cateName">{cate.name}</span>
-              </Link>
+              <span onClick={removeSearchKeyword}>
+                <Link
+                  className="link"
+                  to={`/cateCode/${cate.id}?offset=0&limit=10`}
+                >
+                  <span className="cateName">{cate.name}</span>
+                </Link>
+              </span>
             </div>
           ))}
         </div>
