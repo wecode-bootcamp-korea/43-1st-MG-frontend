@@ -6,14 +6,18 @@ import './Product.scss';
 
 const Product = props => {
   const navigate = useNavigate();
-  const { productDetail, setIsOpenModal } = props;
+  const { productDetail, setIsOpenModal, loginToken } = props;
 
   const moveToProductDetail = id => {
     navigate(`/productDetail/${id}`);
   };
 
   const openModal = () => {
-    setIsOpenModal(prev => !prev);
+    if (loginToken) setIsOpenModal(prev => !prev);
+    else {
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
   };
   return (
     <div className="product" id={productDetail.products_id}>

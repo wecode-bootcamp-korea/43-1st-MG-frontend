@@ -14,7 +14,7 @@ const Nav = props => {
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
-  const loginToken = localStorage.getItem('signup_token');
+  const loginToken = localStorage.getItem('login-token');
 
   useEffect(() => {
     setInterval(() => {
@@ -32,7 +32,7 @@ const Nav = props => {
 
   const handleLink = (e, path) => {
     if (e.target.title === '로그아웃') {
-      localStorage.removeItem('signup_token');
+      localStorage.removeItem('login-token');
       navigate('/');
     } else {
       navigate(path);
@@ -140,7 +140,7 @@ const SIGNUP_USER_LIST = [
 
 const CATE_LIST = [
   { id: 0, name: 'All' },
-  { id: 1, name: 'Women' },
-  { id: 2, name: 'Man' },
+  { id: 1, name: 'Man' },
+  { id: 2, name: 'Woman' },
   { id: 3, name: 'Kids' },
 ];
