@@ -48,33 +48,31 @@ const ShoppingBasket = () => {
     setProductList(productList.filter(item => item.productId === allDelete));
   };
 
-  const howManyTrueArray = productList.filter(row => {
-    if (row.checkedState)
-      return { productId: row.productId, quantity: row.quantity };
-  });
+  const howManyTrueArray = productList.filter(
+    ({ checkedState = false }) => checkedState
+  );
 
   const trueCount = howManyTrueArray.length;
+  //구매하기 fetch
+  const orderCartItems = () => {
+    const trueCountItem = howManyTrueArray.map(({ productId, quantity }) => ({
+      productId,
+      quantity,
+    }));
+
+    fetch('http://127.0.0.1:3000/users/cart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify(trueCountItem),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
 
   const totalSumPrice = howManyTrueArray.reduce(
     (acc, cur) => acc + cur.quantity * cur.productPrice,
     0
   );
-
-  // console.log('key', howManyTrueArray);
-
-  // const cartProductItemsOrder = () => {
-  //   fetch('http://127.0.0.1:3000/users/cart', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  //     Authorization: localStorage.getItem('login-token'),
-  //     body: JSON.stringify({
-  //       productId:howManyTrueArray
-  //       quantity:
-  //     }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data));
-  // };
 
   return (
     <div className="shoppingbasket">
@@ -126,7 +124,9 @@ const ShoppingBasket = () => {
               <span />
             </div>
           </div>
-          <button className="cartItemOrder">구매하기</button>
+          <button className="cartItemOrder" onClick={orderCartItems}>
+            구매하기
+          </button>
         </div>
       </div>
     </div>
