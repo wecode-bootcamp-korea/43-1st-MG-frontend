@@ -31,15 +31,17 @@ const Login = () => {
         }),
       }) //요청
         .then(response => response.json())
-        .then(response => {
-          if (response.ACCESS_TOKEN) {
-            localStorage.setItem('login-token', response.ACCESS_TOKEN);
-          }
         // .then(data => console.log(data));
+        .then(response => {
+          console.log(response);
+          if (response.accessToken) {
+            localStorage.setItem('login-token', response.accessToken);
+          }
+        });
       navigate('/main');
-    }); else {
+    } else {
       alert('로그인 정보를 올바르게 입력하세요');
-    };
+    }
   };
 
   return (
