@@ -8,6 +8,7 @@ export const Product = ({
   setProductList,
   checkedState,
   toggleSelected,
+  productId,
 }) => {
   const handleCount = value => {
     if (Number(data.quantity) + value === 0) return;
@@ -23,9 +24,9 @@ export const Product = ({
 
   // function onRemove(id) {
   //   setProductList(productList.filter(item => item.productId !== id));
-
+  //선택삭제 fetch작성
   function onRemove(id) {
-    fetch('http://10.58.52.215:3000', {
+    fetch('http://127.0.0.1:3000/users/cart', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -34,12 +35,15 @@ export const Product = ({
       body: JSON.stringify(
         setProductList(productList.filter(item => item.productId !== id))
       ),
-    }).then(response => response.json());
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
   }
 
   return (
-    <div className="inCartProducts" key={data.productId}>
+    <div className="inCartProducts">
       <input
+        key={data.productId}
         className="inCartCheck"
         type="checkbox"
         value={data.productId}

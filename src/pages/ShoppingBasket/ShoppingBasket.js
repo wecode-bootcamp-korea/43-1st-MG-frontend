@@ -7,6 +7,15 @@ import { Product } from './component/Product';
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
 
+  //데이터 불러오기 fetch
+  useEffect(() => {
+    fetch('/data/data.json')
+      .then(res => res.json())
+      .then(data => {
+        setProductList(data);
+      });
+  }, []);
+
   const toggleSelected = value => {
     const next = productList.map(product => {
       if (product.productId === value) {
@@ -26,24 +35,46 @@ const ShoppingBasket = () => {
     setProductList(next);
   };
 
+  //전체삭제 fetch작성
+  const handleAllDelete = () => {
+    fetch('http://127.0.0.1:3000/users/cart', {
+      method: 'DELETE',
+      Authorization: localStorage.getItem('login-token'),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+
+    const allDelete = productList.map(item => item.productId);
+    setProductList(productList.filter(item => item.productId === allDelete));
+  };
+
   const howManyTrueArray = productList.filter(row => {
     if (row.checkedState)
       return { productId: row.productId, quantity: row.quantity };
   });
-  const trueCount = howManyTrueArray.length;
 
-  useEffect(() => {
-    fetch('/data/data.json')
-      .then(res => res.json())
-      .then(data => {
-        setProductList(data);
-      });
-  }, []);
+  const trueCount = howManyTrueArray.length;
 
   const totalSumPrice = howManyTrueArray.reduce(
     (acc, cur) => acc + cur.quantity * cur.productPrice,
     0
   );
+
+  // console.log('key', howManyTrueArray);
+
+  // const cartProductItemsOrder = () => {
+  //   fetch('http://127.0.0.1:3000/users/cart', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  //     Authorization: localStorage.getItem('login-token'),
+  //     body: JSON.stringify({
+  //       productId:howManyTrueArray
+  //       quantity:
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => console.log(data));
+  // };
 
   return (
     <div className="shoppingbasket">
@@ -61,8 +92,14 @@ const ShoppingBasket = () => {
           <span className="cartChooseAllCheckText">
             전체선택({trueCount}/{productList.length})
           </span>
-
           <span className="cartBar">|</span>
+          <button
+            className="cartChooseAllCheckDelete"
+            onClick={handleAllDelete}
+          >
+            {' '}
+            전체삭제{' '}
+          </button>
         </div>
         <div className="cartDelivery">
           <span>일반배송</span>

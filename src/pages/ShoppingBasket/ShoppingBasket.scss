@@ -55,6 +55,18 @@
         color: $gray;
         font-size: 20px;
       }
+      .cartChooseAllCheckDelete {
+        margin-right: 20px;
+        border-radius: 5px;
+        background-color: white;
+        @include cartText;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          cursor: pointer;
+        }
+      }
     }
     .cartDelivery {
       width: 660px;
@@ -131,6 +143,7 @@
   }
   .cartItemOrder {
     margin-top: 15px;
+    border-radius: 5px;
     background-color: black;
     color: white;
     font-size: 25px;
