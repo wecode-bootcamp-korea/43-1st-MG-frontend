@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SIGNUP_INPUT_LIST } from './signupInPutList';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -15,6 +16,7 @@ const SignUp = () => {
     point: 0,
   });
 
+  console.log('a', inputValue.email);
   const {
     email,
     password,
@@ -86,10 +88,23 @@ const SignUp = () => {
         body: JSON.stringify(inputValue),
       }).then(response => response.json());
       alert('가입이 완료되었습니다. 즐거운 쇼핑 되세요!');
+      navigate('/login');
     } else {
       alert('필수 정보를 정확하게 입력 해주세요!');
     }
   };
+  //이메일 중복확인 fetch 작성 보내주는 경고창 띄우는 alet 사용예정
+  const emailDubbleCheck = () => {
+    fetch('http://10.58.52.215:3000/users/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({ email: inputValue.email }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
+
+  const navigate = useNavigate();
 
   return (
     <div className="signUp">
@@ -97,7 +112,7 @@ const SignUp = () => {
       <div className="required">
         <span className="pinkStar">*</span> 필수입력사항
       </div>
-      <form className="signUpForm">
+      <form className="signUpForm" onsubmit="return false;">
         {SIGNUP_INPUT_LIST.map(list => {
           return (
             <div className="inputWarp" key={list.id}>
@@ -144,7 +159,9 @@ const SignUp = () => {
                       <div className="guide">{list.errorMsg}</div>
                     )}
                   </div>
-                  {list.title === '이메일' && <button>중복확인</button>}
+                  {list.title === '이메일' && (
+                    <button onClick={emailDubbleCheck}>중복확인</button>
+                  )}
                 </>
               )}
             </div>
