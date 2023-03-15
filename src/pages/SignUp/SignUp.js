@@ -16,7 +16,6 @@ const SignUp = () => {
     point: 0,
   });
 
-  console.log('a', inputValue.email);
   const {
     email,
     password,
@@ -26,8 +25,6 @@ const SignUp = () => {
     birth,
     address,
   } = inputValue;
-
-  console.log(inputValue);
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -82,7 +79,7 @@ const SignUp = () => {
 
   const goToMain = () => {
     if (activeButton && isAllChecked) {
-      fetch('http://10.58.52.215:3000/users/signup', {
+      fetch('http://10.58.52.209:3000/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(inputValue),
