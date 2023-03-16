@@ -1,6 +1,6 @@
 [
   {
-    "productId": 1,
+    "productId": 20,
     "productName": "활력충전 멀티 비타민",
     "categoryId": "man",
     "quantity": 5,
@@ -8,7 +8,7 @@
     "productThumbnail": "/images/product.png"
   },
   {
-    "productId": 2,
+    "productId": 10,
     "productName": "면역력에 좋은 프로폴리스",
     "categoryId": "man",
     "quantity": 8,

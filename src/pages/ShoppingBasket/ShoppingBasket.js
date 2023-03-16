@@ -37,13 +37,12 @@ const ShoppingBasket = () => {
 
   //전체삭제 fetch작성
   const handleAllDelete = () => {
-    fetch('http://127.0.0.1:3000/users/cart', {
-      method: 'DELETE',
-      Authorization: localStorage.getItem('login-token'),
+    fetch('http://10.58.52.209:3000/users/cart/deleteAll', {
+      method: 'GET',
+      headers: { Authorization: localStorage.getItem('login-token') },
     })
       .then(response => response.json())
-      .then(data => console.log(data));
-
+      .then(data => alert('장바구니의 모든 상품이 삭제되었습니다.'));
     const allDelete = productList.map(item => item.productId);
     setProductList(productList.filter(item => item.productId === allDelete));
   };
@@ -55,15 +54,12 @@ const ShoppingBasket = () => {
   const trueCount = howManyTrueArray.length;
   //구매하기 fetch
   const orderCartItems = () => {
-    const trueCountItem = howManyTrueArray.map(({ productId, quantity }) => ({
-      productId,
-      quantity,
-    }));
-
-    fetch('http://127.0.0.1:3000/users/cart', {
+    fetch('http://10.58.52.209:3000/users/orders', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      body: JSON.stringify(trueCountItem),
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('login-token'),
+      },
     })
       .then(response => response.json())
       .then(data => console.log(data));
@@ -95,8 +91,7 @@ const ShoppingBasket = () => {
             className="cartChooseAllCheckDelete"
             onClick={handleAllDelete}
           >
-            {' '}
-            전체삭제{' '}
+            전체삭제
           </button>
         </div>
         <div className="cartDelivery">

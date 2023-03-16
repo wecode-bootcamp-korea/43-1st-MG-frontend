@@ -8,11 +8,10 @@ export const Product = ({
   setProductList,
   checkedState,
   toggleSelected,
-  productId,
 }) => {
+  //수량변경 fetch
   const handleCount = value => {
     if (Number(data.quantity) + value === 0) return;
-
     const newArray = productList.map(product => {
       const { productId, quantity } = product;
       if (productId === data.productId)
@@ -20,24 +19,31 @@ export const Product = ({
       return product;
     });
     setProductList(newArray);
-  };
-
-  // function onRemove(id) {
-  //   setProductList(productList.filter(item => item.productId !== id));
-  //선택삭제 fetch작성
-  function onRemove(id) {
-    fetch('http://127.0.0.1:3000/users/cart', {
-      method: 'DELETE',
+    fetch('http://10.58.52.209:3000/users/cart', {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('login-token'),
       },
-      body: JSON.stringify(
-        setProductList(productList.filter(item => item.productId !== id))
-      ),
+      body: JSON.stringify({
+        productId: data.productId,
+        quantity: data.quantity,
+      }),
+    });
+  };
+
+  //선택삭제 fetch작성
+  function onRemove(id) {
+    setProductList(productList.filter(item => item.productId !== id));
+    fetch(`http://10.58.52.209:3000/users/cart/delete/${data.productId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('login-token'),
+      },
     })
       .then(response => response.json())
-      .then(data => console.log(data));
+      .then(data => alert('선택하신 상품이 삭제되었습니다.'));
   }
 
   return (
