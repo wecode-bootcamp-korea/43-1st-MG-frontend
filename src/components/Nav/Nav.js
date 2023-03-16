@@ -34,7 +34,7 @@ const Nav = props => {
   };
 
   const getCartListFetch = () => {
-    fetch(`${APIS.cart}`, {
+    fetch(`${APIS.updateCartCount}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
