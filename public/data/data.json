@@ -5,7 +5,8 @@
     "categoryId": "man",
     "quantity": 5,
     "productPrice": 41000,
-    "productThumbnail": "/images/product.png"
+    "productThumbnail": "/images/product.png",
+    "point": 300000
   },
   {
     "productId": 10,
@@ -13,7 +14,8 @@
     "categoryId": "man",
     "quantity": 8,
     "productPrice": 28000,
-    "productThumbnail": "/images/product.png"
+    "productThumbnail": "/images/product.png",
+    "point": 300000
   },
   {
     "productId": 3,
@@ -21,7 +23,8 @@
     "categoryId": "man",
     "quantity": 3,
     "productPrice": 43500,
-    "productThumbnail": "/images/product.png"
+    "productThumbnail": "/images/product.png",
+    "point": 300000
   },
   {
     "productId": 4,
@@ -29,6 +32,7 @@
     "categoryId": "man",
     "quantity": 2,
     "productPrice": 28000,
-    "productThumbnail": "/images/product.png"
+    "productThumbnail": "/images/product.png",
+    "point": 300000
   }
 ]

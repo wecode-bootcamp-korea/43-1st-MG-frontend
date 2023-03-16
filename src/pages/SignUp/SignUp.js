@@ -14,7 +14,7 @@ const SignUp = () => {
     phoneNumber: '',
     birth: '',
     address: '',
-    point: 0,
+    point: 300000,
   });
 
   const {

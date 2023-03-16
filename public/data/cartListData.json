@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "userId": 6,
+      "userName": "subin2",
+      "point": "300000.00",
+      "products": [
+        {
+          "cartId": 1,
+          "quantity": 1,
+          "productId": 1,
+          "productName": "modifiedSample1",
+          "price": 1000,
+          "discountedPrice": 1000
+        },
+        {
+          "cartId": 2,
+          "quantity": 9,
+          "productId": 2,
+          "productName": "modifiedSample2",
+          "price": 1500,
+          "discountedPrice": 14250
+        },
+        {
+          "cartId": 3,
+          "quantity": 10,
+          "productId": 3,
+          "productName": "modifiedSample3",
+          "price": 13000,
+          "discountedPrice": 11960
+        },
+        {
+          "cartId": 4,
+          "quantity": 5,
+          "productId": 4,
+          "productName": "modifiedSample4",
+          "price": 8500,
+          "discountedPrice": 42000
+        }
+      ]
+    }
+  ]
+}

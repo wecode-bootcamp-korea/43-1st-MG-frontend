@@ -37,7 +37,7 @@ const Modal = props => {
         {usage === 'mainCart' ? (
           <MainCart data={data} setIsOpenModal={setIsOpenModal} />
         ) : (
-          <Order />
+          <Order setIsOpenModal={setIsOpenModal} />
         )}
       </article>
     </div>
