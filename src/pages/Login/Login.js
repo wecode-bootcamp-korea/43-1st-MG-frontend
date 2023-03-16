@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './Login.scss';
 import { useNavigate } from 'react-router-dom';
+import { APIS } from '../../config';
+import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
   const goToMain = () => {
     console.log(email, password);
     if (isValid) {
-      fetch('http://10.58.52.209:3000/users/signin', {
+      fetch(`${APIS.signIn}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8', //필수로 넣어야함

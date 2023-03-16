@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import ImgSlide from './ImgSlide/ImgSlide';
 import ProductList from './ProductList/ProductList';
-import './Main.scss';
 import Modal from '../../components/Modal/Modal';
+import { APIS } from '../../config';
+import './Main.scss';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -34,9 +35,9 @@ const Main = () => {
   const getAllProdData = () => {
     let url = '';
     if (searchKeyword)
-      url = `http://10.58.52.209:3000/products?categoryId=0&offset=0&limit=100000`;
+      url = `${APIS.productsDetail}?categoryId=0&offset=0&limit=100000`;
     else
-      url = `http://10.58.52.209:3000/products?categoryId=${cateId}&offset=${offset}&limit=${limit}`;
+      url = `${APIS.productsDetail}?categoryId=${cateId}&offset=${offset}&limit=${limit}`;
     //const url = `/data/productsData${cateId}&${offset}&${limit}.json`;
 
     fetch(url, {
@@ -72,7 +73,7 @@ const Main = () => {
 
   //카테고리별 상품 개수 조회
   useEffect(() => {
-    fetch('http://10.58.52.209:3000/products/categories/product-count', {
+    fetch(`${APIS.productsCount}`, {
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
     })
