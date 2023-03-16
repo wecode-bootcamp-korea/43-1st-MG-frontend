@@ -36,7 +36,6 @@ const MainCart = props => {
           </div>
         </div>
       )}
-
       <div className="options">
         <select className="inputOptionSelect" onChange={handleSelect}>
           {OPTIONS.map(opt => {
@@ -48,14 +47,12 @@ const MainCart = props => {
           })}
         </select>
       </div>
-
       <div className="totalPriceWrapper">
         <span className="txtTotalTitle">합계</span>
         <span className="txtTotalPrice">
           {calculatePercentage(count, count * data.price).toLocaleString()}원
         </span>
       </div>
-
       <div className="cartBtnWrapper">
         <button
           className="cancel"

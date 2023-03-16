@@ -1,5 +1,5 @@
-@import '/src/styles/mixin.scss';
-@import '/src/styles/variables.scss';
+@import '/src/styles/mixin';
+@import '/src/styles/variables';
 
 .mainCart {
   position: relative;
@@ -36,23 +36,23 @@
   .contentsWrapper {
     margin: 10px 0;
     .discountInfo {
-      font-size: 8px;
       color: #c0c0c0;
+      font-size: 8px;
     }
   }
 
   .options {
     .inputOptionSelect {
       width: 100%;
-      text-align: center;
       padding: 8px;
+      text-align: center;
     }
   }
 
   .totalPriceWrapper {
     position: absolute;
-    width: 100%;
     bottom: 80px;
+    width: 100%;
 
     .txtTotalTitle {
       position: absolute;
@@ -68,8 +68,8 @@
 
   .cartBtnWrapper {
     position: absolute;
-    width: 100%;
     bottom: 50px;
+    width: 100%;
 
     button {
       width: 45%;

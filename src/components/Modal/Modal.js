@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import MainCart from './components/MainCart/MainCart';
+import Order from './components/Order/Order';
 import './Modal.scss';
 
 const Modal = props => {
@@ -36,7 +37,7 @@ const Modal = props => {
         {usage === 'mainCart' ? (
           <MainCart data={data} setIsOpenModal={setIsOpenModal} />
         ) : (
-          ''
+          <Order />
         )}
       </article>
     </div>
