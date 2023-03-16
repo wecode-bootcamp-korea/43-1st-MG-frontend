@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HomeLogo from '../../assets/images/nav/weeklyLogo.png';
 import Basket from '../../assets/images/nav/shopping-bag.png';
@@ -6,18 +6,20 @@ import Search from '../../assets/images/nav/search.png';
 import './Nav.scss';
 
 const Nav = props => {
-  //아래 state들은 동적라우팅을 학습하게 되면 사용할 예정입니다.
+  const searchRef = useRef();
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [basket, setBasket] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [basket, setBasket] = useState(
+    JSON.parse(localStorage.getItem('basket')) || []
+  );
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
-  const loginToken = localStorage.getItem('login-token');
+  const loginToken = localStorage.getItem('signup_token');
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
       setSearchKeyword(inputSearchVal);
+      navigate(`/search/${inputSearchVal}`);
     }
   };
 
@@ -45,6 +47,10 @@ const Nav = props => {
   useEffect(() => {
     if (loginToken) getCartListFetch();
   }, []);
+
+  const removeSearchKeyword = () => {
+    searchRef.current.value = '';
+  };
 
   return (
     <header className="nav">
@@ -100,6 +106,7 @@ const Nav = props => {
               className="search"
               onChange={e => setInputSearchVal(e.target.value)}
               onKeyUp={handleSearch}
+              ref={searchRef}
             />
             <img
               src={Search}
@@ -109,22 +116,25 @@ const Nav = props => {
             />
           </div>
           <div className="basket">
-            <img src={Basket} alt="basket" />
-            {basket.length > 0 && (
-              <span className="basketCount">{basket.length}</span>
-            )}
+            <Link to="/shoppingBasket">
+              <img src={Basket} alt="basket" />
+            </Link>
+            {basket && <span className="basketCount">{basket.length}</span>}
           </div>
         </div>
       </div>
       <div className="headerCate">
         <div className="cateMenu">
           {CATE_LIST.map(cate => (
-            <div
-              className="menu"
-              key={cate.id}
-              onClick={() => setSelectedCategory(cate.name)}
-            >
-              {cate.name}
+            <div className="menu" key={cate.id}>
+              <span onClick={removeSearchKeyword}>
+                <Link
+                  className="link"
+                  to={`/cateCode/${cate.id}?offset=0&limit=10`}
+                >
+                  <span className="cateName">{cate.name}</span>
+                </Link>
+              </span>
             </div>
           ))}
         </div>
@@ -146,8 +156,8 @@ const SIGNUP_USER_LIST = [
 ];
 
 const CATE_LIST = [
-  { id: 1, name: 'All' },
-  { id: 2, name: 'Women' },
-  { id: 3, name: 'Man' },
-  { id: 4, name: 'Child' },
+  { id: 0, name: 'All' },
+  { id: 1, name: 'Man' },
+  { id: 2, name: 'Woman' },
+  { id: 3, name: 'Kids' },
 ];
