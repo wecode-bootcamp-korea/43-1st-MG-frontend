@@ -1,7 +1,7 @@
 [
-  { "id": 1, "imgSrc": "img01.png" },
-  { "id": 2, "imgSrc": "img02.png" },
-  { "id": 3, "imgSrc": "img03.png" },
-  { "id": 4, "imgSrc": "img04.png" },
-  { "id": 5, "imgSrc": "img05.png" }
+  { "id": 1, "imgSrc": "img01.jpg" },
+  { "id": 2, "imgSrc": "img02.jpg" },
+  { "id": 3, "imgSrc": "img03.jpg" },
+  { "id": 4, "imgSrc": "img04.jpg" },
+  { "id": 5, "imgSrc": "img05.jpg" }
 ]
