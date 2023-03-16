@@ -1,5 +1,6 @@
 import React from 'react';
 import closeImg from '../../../assets/images/cross.png';
+import { APIS } from '../../../config';
 import './Product.scss';
 
 export const Product = ({
@@ -19,7 +20,7 @@ export const Product = ({
       return product;
     });
     setProductList(newArray);
-    fetch('http://10.58.52.209:3000/users/cart', {
+    fetch(`${APIS.cart}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -35,7 +36,7 @@ export const Product = ({
   //선택삭제 fetch작성
   function onRemove(id) {
     setProductList(productList.filter(item => item.productId !== id));
-    fetch(`http://10.58.52.209:3000/users/cart/delete/${data.productId}`, {
+    fetch(`${APIS.selectedCartDelete}/${data.productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
