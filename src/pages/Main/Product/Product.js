@@ -28,7 +28,7 @@ const Product = ({
     <div className="product" id={productDetail.products_id}>
       <img
         className="thumbnail"
-        src={`${PRODUCT_PATH}/${productDetail.thumbnail}.jpg`}
+        src={`${productDetail.thumbnail}`}
         alt="product-thumbnail"
         onClick={e => moveToProductDetail(productDetail.products_id)}
       />
