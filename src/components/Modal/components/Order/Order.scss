@@ -1,0 +1,70 @@
+.order {
+  .orderListMain {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(206, 206, 206);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .sendproduct {
+    width: 350px;
+    margin-bottom: 5px;
+    overflow: auto;
+    border: 2px solid rgb(203, 199, 199);
+
+    &::-webkit-scrollbar {
+      width: 10px; /*스크롤바의 너비*/
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(113, 113, 113);
+    }
+    .cartListMap {
+      display: flex;
+      .cartListProductMap {
+      }
+      .artListQuentityMap {
+      }
+    }
+  }
+  .orderListInfo {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin-bottom: 15px;
+    .orderListInfoKey {
+      p {
+        color: gray;
+        font-size: 15px;
+        line-height: 30px;
+      }
+      .lastprice {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 30px;
+      }
+    }
+    .orderListInfoValue {
+      text-align: end;
+      p {
+        color: gray;
+        font-size: 15px;
+        line-height: 30px;
+      }
+      .lastpriceValue {
+        color: red;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 30px;
+      }
+    }
+  }
+  button {
+    width: 350px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 23px;
+    font-weight: 700;
+  }
+}

@@ -91,7 +91,8 @@ const SignUp = () => {
     }
   };
   //이메일 중복확인 fetch 작성 보내주는 경고창 띄우는 alet 사용예정
-  const emailDubbleCheck = () => {
+  const emailDubbleCheck = e => {
+    e.preventDefault();
     fetch('http://10.58.52.215:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -109,7 +110,7 @@ const SignUp = () => {
       <div className="required">
         <span className="pinkStar">*</span> 필수입력사항
       </div>
-      <form className="signUpForm" onSubmit="return false;">
+      <form className="signUpForm">
         {SIGNUP_INPUT_LIST.map(list => {
           return (
             <div className="inputWarp" key={list.id}>

@@ -4,13 +4,13 @@ import KakaoTalk from '../../assets/images/footer/kakao-talk.png';
 import './Footer.scss';
 
 const Footer = () => {
-  const loginToken = localStorage.getItem('signup_token');
+  const loginToken = localStorage.getItem('login-token');
   const navigate = useNavigate();
   const handleLink = e => {
     if (e.target.innerHTML === '로그인') {
       navigate('/login');
     } else {
-      localStorage.removeItem('signup_token');
+      localStorage.removeItem('login-token');
       navigate('/');
     }
   };
