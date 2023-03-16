@@ -10,11 +10,7 @@ const Modal = props => {
   );
 
   //usage : 모달창을 어떤 목적으로 사용할 것인지 구분하기 위한 변수
-  const { /*usage,*/ setIsOpenModal, data } = props;
-
-  //메인 - 장바구니 개발중
-  //나중에 usage는 삭제하고 props에서 받아 씁시다!
-  const usage = 'order';
+  const { usage, setIsOpenModal, data } = props;
 
   const listener = () => {
     setHeight(document.body.getBoundingClientRect().height);

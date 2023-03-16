@@ -3,11 +3,7 @@ import { calculatePercentage } from '../../../../functions/commonFunc';
 import './MainCart.scss';
 
 const MainCart = props => {
-  //const {data, setIsOpenModal} = props;
-  //우선 dev에서는 data를 만들어서 사용
-  const data = { id: 1, name: '비타민D', price: 3000 };
-  const { setIsOpenModal } = props;
-
+  const { data, setIsOpenModal } = props;
   const [count, setCount] = useState(0);
 
   const handleSelect = e => {
@@ -57,7 +53,6 @@ const MainCart = props => {
           {calculatePercentage(count, count * data.price).toLocaleString()}원
         </span>
       </div>
-      ㅎ
       <div className="cartBtnWrapper">
         <button
           className="cancel"
