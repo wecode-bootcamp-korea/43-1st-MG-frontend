@@ -1,0 +1,95 @@
+@import '/src/styles/mixin.scss';
+@import '/src/styles/variables.scss';
+
+.mainCart {
+  position: relative;
+  height: 100%;
+
+  .cartList {
+    position: relative;
+    padding: 30px 10px;
+
+    .countBtn {
+      position: absolute;
+      top: 25px;
+      right: 5px;
+      padding: 5px 10px;
+      border: 1px solid #c0c0c0;
+      border-radius: 5px;
+
+      .btnMinus,
+      .btnPlus {
+        border: 0;
+        outline: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .quantity {
+        padding: 0px 15px;
+      }
+    }
+  }
+
+  .contentsWrapper {
+    margin: 10px 0;
+    .discountInfo {
+      font-size: 8px;
+      color: #c0c0c0;
+    }
+  }
+
+  .options {
+    .inputOptionSelect {
+      width: 100%;
+      text-align: center;
+      padding: 8px;
+    }
+  }
+
+  .totalPriceWrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 80px;
+
+    .txtTotalTitle {
+      position: absolute;
+      left: 15px;
+    }
+
+    .txtTotalPrice {
+      position: absolute;
+      right: 15px;
+      font-weight: 600;
+    }
+  }
+
+  .cartBtnWrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+
+    button {
+      width: 45%;
+      height: 40px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .cancel {
+      position: absolute;
+      left: 15px;
+      background-color: white;
+    }
+
+    .cart {
+      position: absolute;
+      right: 15px;
+      background-color: black;
+      color: white;
+    }
+  }
+}
