@@ -1,0 +1,29 @@
+.inCartProducts {
+  .count {
+    display: flex;
+    height: 36px;
+    gap: 10px;
+
+    &Input {
+      display: flex;
+      width: fit-content;
+      height: 100%;
+      padding: 8px;
+      border: 1px solid #dddddd;
+      gap: 8px;
+
+      button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+
+      &Text {
+        width: 40px;
+        border: solid black;
+        border-width: 0 1px;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+@import '../../styles/mixin';
+@import '../../styles/variables';
+
+.shoppingbasket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 180px;
+  padding-bottom: 50px;
+
+  .titleArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 1018px;
+    height: 135px;
+    border-bottom: 2px solid black;
+
+    p {
+      display: block;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 80px;
+      text-align: center;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .cartlistContainer {
+    .cartChoose {
+      display: flex;
+      align-items: center;
+      width: 660px;
+      height: 28px;
+      padding: 50px 0 25px 0;
+      border-bottom: 2px solid #f4f4f4;
+      input {
+        width: 30px;
+        height: 30px;
+        margin-right: 30px;
+        accent-color: black;
+      }
+
+      .cartChooseAllCheckText {
+        margin-right: 20px;
+        @include cartText;
+      }
+
+      .cartBar {
+        margin-right: 15px;
+        color: $gray;
+        font-size: 20px;
+      }
+      .cartChooseAllCheckDelete {
+        margin-right: 20px;
+        border-radius: 5px;
+        background-color: white;
+        @include cartText;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+    .cartDelivery {
+      width: 660px;
+      padding: 33px 0 12px 0;
+      border-bottom: 2px solid #f4f4f4;
+      span {
+        @include cartText;
+      }
+    }
+    .cartProduct {
+      display: flex;
+      flex-direction: column;
+      width: 660px;
+
+      .inCartProducts {
+        display: flex;
+        align-items: center;
+
+        padding: 20px 0;
+        border-bottom: 2px solid #f4f4f4;
+
+        input {
+          width: 20px;
+          height: 20px;
+          accent-color: black;
+        }
+
+        img {
+          width: 86px;
+          height: 86px;
+          margin: 0 20px;
+        }
+
+        .inCartProductName {
+          display: flex;
+          flex-direction: column;
+          width: 250px;
+
+          .productInfo {
+            margin-top: 8px;
+            color: $gray;
+          }
+        }
+
+        .productAllprice {
+          width: 120px;
+          padding-left: 20px;
+          font-weight: bold;
+          text-align: right;
+        }
+
+        .productdelite {
+          width: 20px;
+          height: 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .cartTotalPrice {
+    width: 660px;
+    height: 65px;
+    background-color: #f0f0f0;
+
+    .cartTotalPriceText {
+      padding: 24px 20px 0 0;
+      font-size: 17px;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+  .cartItemOrder {
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+
+    &:hover {
+      transition: 0.9s;
+      background-color: white;
+      color: black;
+      cursor: pointer;
+    }
+  }
+}
