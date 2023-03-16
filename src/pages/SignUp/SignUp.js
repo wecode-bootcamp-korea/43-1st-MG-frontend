@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SIGNUP_INPUT_LIST } from './signupInPutList';
 import { useNavigate } from 'react-router-dom';
+import { APIS } from '../../config';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -79,7 +80,7 @@ const SignUp = () => {
 
   const goToMain = () => {
     if (activeButton && isAllChecked) {
-      fetch('http://10.58.52.209:3000/users/signup', {
+      fetch(`${APIS.signUp}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(inputValue),
@@ -93,7 +94,7 @@ const SignUp = () => {
   //이메일 중복확인 fetch 작성 보내주는 경고창 띄우는 alet 사용예정
   const emailDubbleCheck = e => {
     e.preventDefault();
-    fetch('http://10.58.52.215:3000/users/signup', {
+    fetch(`${APIS.signUp}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({ email: inputValue.email }),

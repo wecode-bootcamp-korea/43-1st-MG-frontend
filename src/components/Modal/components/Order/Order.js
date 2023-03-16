@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { APIS } from '../../../../config';
 import './Order.scss';
 
 const Order = () => {
@@ -13,7 +14,7 @@ const Order = () => {
   }, []);
 
   const onclick = () => {
-    fetch('http://10.58.52.215:3000/users/signup', {
+    fetch(`http://10.58.52.215:3000/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({ productID: 123, quentity: 5 }),

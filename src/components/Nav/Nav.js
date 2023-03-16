@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import HomeLogo from '../../assets/images/nav/weeklyLogo.png';
 import Basket from '../../assets/images/nav/shopping-bag.png';
 import Search from '../../assets/images/nav/search.png';
+import { APIS } from '../../config';
 import './Nav.scss';
 
 const Nav = props => {
@@ -33,7 +34,7 @@ const Nav = props => {
   };
 
   const getCartListFetch = () => {
-    fetch('http://10.58.52.209:3000/users/cart', {
+    fetch(`${APIS.cart}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

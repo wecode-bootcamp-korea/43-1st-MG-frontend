@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
-import './ShoppingBasket.scss';
-import cartImg from '../../assets/images/shopping-cart.png';
 import { Product } from './component/Product';
+import { APIS } from '../../config';
+import cartImg from '../../assets/images/shopping-cart.png';
+import './ShoppingBasket.scss';
 
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
@@ -37,7 +38,7 @@ const ShoppingBasket = () => {
 
   //전체삭제 fetch작성
   const handleAllDelete = () => {
-    fetch('http://10.58.52.209:3000/users/cart/deleteAll', {
+    fetch(`${APIS.deleteCartAll}`, {
       method: 'GET',
       headers: { Authorization: localStorage.getItem('login-token') },
     })
@@ -54,7 +55,7 @@ const ShoppingBasket = () => {
   const trueCount = howManyTrueArray.length;
   //구매하기 fetch
   const orderCartItems = () => {
-    fetch('http://10.58.52.209:3000/users/orders', {
+    fetch(`${APIS.purchase}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
