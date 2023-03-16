@@ -13,7 +13,10 @@ const ShoppingBasket = () => {
 
   //데이터 불러오기 fetch
   useEffect(() => {
-    fetch('/data/cartListData.json')
+    fetch(`${APIS.updateCartCount}`, {
+      method: 'GET',
+      headers: { Authorization: localStorage.getItem('login-token') },
+    })
       .then(res => res.json())
       .then(data => {
         setPoint(Number(data.data[0].point));
