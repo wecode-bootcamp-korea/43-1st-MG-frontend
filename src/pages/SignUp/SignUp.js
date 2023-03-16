@@ -109,7 +109,7 @@ const SignUp = () => {
       <div className="required">
         <span className="pinkStar">*</span> 필수입력사항
       </div>
-      <form className="signUpForm" onsubmit="return false;">
+      <form className="signUpForm" onSubmit="return false;">
         {SIGNUP_INPUT_LIST.map(list => {
           return (
             <div className="inputWarp" key={list.id}>
