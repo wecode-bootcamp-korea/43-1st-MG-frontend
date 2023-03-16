@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Basket from '../../../assets/images/main/basket.png';
 import './Product.scss';
 
-const Product = ({ productDetail, setIsOpenModal, loginToken }) => {
+const Product = ({
+  productDetail,
+  setIsOpenModal,
+  loginToken,
+  setCartProduct,
+}) => {
   const navigate = useNavigate();
 
   const moveToProductDetail = id => {
@@ -12,6 +17,7 @@ const Product = ({ productDetail, setIsOpenModal, loginToken }) => {
   };
 
   const openModal = () => {
+    setCartProduct(productDetail);
     if (loginToken) setIsOpenModal(prev => !prev);
     else {
       alert('로그인이 필요합니다.');
@@ -37,7 +43,9 @@ const Product = ({ productDetail, setIsOpenModal, loginToken }) => {
       <p className="title" onClick={e => moveToProductDetail(productDetail.id)}>
         {productDetail.products_name}
       </p>
-      <p className="price">{productDetail.price.toLocaleString('ko-KR')}원</p>
+      <p className="price">
+        {Math.floor(productDetail.price.toLocaleString('ko-KR'))}원
+      </p>
     </div>
   );
 };

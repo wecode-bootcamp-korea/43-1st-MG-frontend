@@ -14,7 +14,7 @@ const Nav = props => {
 
   const [inputSearchVal, setInputSearchVal] = useState('');
   const navigate = useNavigate();
-  const loginToken = localStorage.getItem('signup_token');
+  const loginToken = localStorage.getItem('login-token');
 
   const handleSearch = e => {
     if (e.type === 'click' || e.keyCode === 13) {
@@ -33,7 +33,7 @@ const Nav = props => {
   };
 
   const getCartListFetch = () => {
-    fetch('http://10.58.52.209:3000/users/cart', {
+    fetch('http://10.58.52.209:3000/cart', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -45,7 +45,7 @@ const Nav = props => {
   };
 
   useEffect(() => {
-    if (loginToken) getCartListFetch();
+    if (loginToken) setInterval(() => getCartListFetch(), 1500);
   }, []);
 
   const removeSearchKeyword = () => {
