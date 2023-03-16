@@ -15,9 +15,11 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/cateCode/:id" element={<Main />} />
+        <Route path="/search/:keyword" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/productDetail" element={<ProductDetail />} />
+        <Route path="/productDetail/:id" element={<ProductDetail />} />
         <Route path="/shoppingBasket" element={<ShoppingBasket />} />
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
