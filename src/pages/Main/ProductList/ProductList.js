@@ -9,6 +9,7 @@ const ProductList = props => {
     setIsOpenModal,
     loginToken,
     searchKeyword,
+    setCartProduct,
   } = props;
 
   const listTitle = {
@@ -33,6 +34,7 @@ const ProductList = props => {
               productDetail={productDetail}
               setIsOpenModal={setIsOpenModal}
               loginToken={loginToken}
+              setCartProduct={setCartProduct}
             />
           ))}
         </div>
