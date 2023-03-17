@@ -46,6 +46,7 @@ export const Product = ({
       .then(response => response.json())
       .then(data => alert('선택하신 상품이 삭제되었습니다.'));
   }
+
   return (
     <div className="inCartProducts">
       <input
@@ -56,7 +57,8 @@ export const Product = ({
         checked={checkedState}
         onChange={() => toggleSelected(data.productId)}
       />
-      <img src="./images/github.png" alt="productImage" />
+      <img src={data.productThumbnail} alt="productImage" />
+
       <div product className="inCartProductName">
         <span className="productNameText">{data.productName}</span>
         <span className="productInfo">
