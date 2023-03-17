@@ -17,6 +17,8 @@ const Main = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [cateTotalCount, setCateTotalCount] = useState([]);
+  const [cartProduct, setCartProduct] = useState({});
+
   let totalCount = 0;
   if (cateTotalCount.length > 0) {
     //카테고리별 총 개수
@@ -133,11 +135,16 @@ const Main = () => {
             loginToken={loginToken}
             cateTotalCount={cateTotalCount}
             searchKeyword={searchKeyword}
+            setCartProduct={setCartProduct}
           />
         )}
       </section>
       {isOpenModal && (
-        <Modal usage="mainCart" setIsOpenModal={setIsOpenModal} />
+        <Modal
+          usage="mainCart"
+          setIsOpenModal={setIsOpenModal}
+          data={cartProduct}
+        />
       )}
     </article>
   );

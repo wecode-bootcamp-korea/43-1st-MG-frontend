@@ -19,6 +19,21 @@ const MainCart = props => {
       setCount(count + 1);
     }
   };
+  const handleCount = value => {
+    fetch('http://10.58.52.209:3000/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('login-token'),
+      },
+      body: JSON.stringify({
+        productId: data.products_id,
+        quantity: count,
+      }),
+    }).then(response => {
+      if (response.ok) setIsOpenModal(prev => !prev);
+    });
+  };
 
   return (
     <div className="mainCart">
@@ -60,7 +75,9 @@ const MainCart = props => {
         >
           취소
         </button>
-        <button className="cart">장바구니 담기</button>
+        <button className="cart" onClick={handleCount}>
+          장바구니 담기
+        </button>
       </div>
     </div>
   );
