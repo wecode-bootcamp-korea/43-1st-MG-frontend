@@ -5,7 +5,7 @@ export const APIS = {
   signIn: `${BASE_URL}/users/signin`,
   productsCount: `${BASE_URL}/products/categories/product-count`,
   productsDetail: `${BASE_URL}/products`,
-  deleteCartAll: `${BASE_URL}/users/cart/deleteAll`,
+  deleteCartAll: `${BASE_URL}/cart/all`,
   updateCartCount: `${BASE_URL}/cart`,
   selectedCartDelete: `${BASE_URL}/users/cart/delete`,
   payment: `${BASE_URL}/orders`,

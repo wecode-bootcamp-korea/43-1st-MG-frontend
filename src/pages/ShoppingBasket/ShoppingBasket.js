@@ -23,7 +23,7 @@ const ShoppingBasket = () => {
         setProductList(data.data[0].products);
       });
   }, []);
-
+  console.log(productList);
   const toggleSelected = value => {
     const next = productList.map(product => {
       if (product.productId === value) {
@@ -46,7 +46,7 @@ const ShoppingBasket = () => {
   //전체삭제 fetch작성
   const handleAllDelete = () => {
     fetch(`${APIS.deleteCartAll}`, {
-      method: 'GET',
+      method: 'DELETE',
       headers: { Authorization: localStorage.getItem('login-token') },
     })
       .then(response => response.json())
