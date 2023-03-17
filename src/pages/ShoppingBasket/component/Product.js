@@ -20,7 +20,7 @@ export const Product = ({
       return product;
     });
     setProductList(newArray);
-    fetch(`${APIS.cart}`, {
+    fetch(`${APIS.updateCartCount}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -61,7 +61,7 @@ export const Product = ({
       <div product className="inCartProductName">
         <span className="productNameText">{data.productName}</span>
         <span className="productInfo">
-          1개:&nbsp;&nbsp;{data.productPrice.toLocaleString()}원
+          1개:&nbsp;&nbsp;{data.price.toLocaleString()}원
         </span>
       </div>
       <div className="count">
@@ -84,7 +84,7 @@ export const Product = ({
         </div>
       </div>
       <div className="productAllprice">
-        {(data.productPrice * data.quantity).toLocaleString()}원
+        {(data.price * data.quantity).toLocaleString()}원
       </div>
       <img
         name={data.productId}

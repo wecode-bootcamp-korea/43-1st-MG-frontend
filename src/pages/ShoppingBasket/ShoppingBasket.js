@@ -2,18 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { Product } from './component/Product';
 import { APIS } from '../../config';
+import Modal from '../../components/Modal/Modal';
 import cartImg from '../../assets/images/shopping-cart.png';
 import './ShoppingBasket.scss';
 
 const ShoppingBasket = () => {
   const [productList, setProductList] = useState([]);
+  const [point, setPoint] = useState(0);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   //데이터 불러오기 fetch
   useEffect(() => {
-    fetch('/data/data.json')
+    fetch(`${APIS.updateCartCount}`, {
+      method: 'GET',
+      headers: { Authorization: localStorage.getItem('login-token') },
+    })
       .then(res => res.json())
       .then(data => {
-        setProductList(data);
+        setPoint(Number(data.data[0].point));
+        setProductList(data.data[0].products);
       });
   }, []);
 
@@ -55,19 +62,22 @@ const ShoppingBasket = () => {
   const trueCount = howManyTrueArray.length;
   //구매하기 fetch
   const orderCartItems = () => {
-    fetch(`${APIS.purchase}`, {
+    fetch(`${APIS.payment}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('login-token'),
       },
+      body: JSON.stringify({ totalPrice: totalSumPrice + DELIV_PRICE }),
     })
       .then(response => response.json())
       .then(data => console.log(data));
-  };
 
+    setIsOpenModal(prev => !prev);
+  };
+  console.log(howManyTrueArray);
   const totalSumPrice = howManyTrueArray.reduce(
-    (acc, cur) => acc + cur.quantity * cur.productPrice,
+    (acc, cur) => acc + cur.quantity * cur.price,
     0
   );
 
@@ -113,16 +123,32 @@ const ShoppingBasket = () => {
 
           <div className="cartTotalPrice">
             <div className="cartTotalPriceText">
-              <span>제품가격</span>
-              <span> {totalSumPrice.toLocaleString()}</span>
-              <span>+ 배송비 {DELIV_PRICE.toLocaleString()}원 = </span>
-              {(totalSumPrice + DELIV_PRICE).toLocaleString()}원
-              <span />
+              <div className="cartPoint">
+                <span>보유 적립금 </span>
+                <span>{point.toLocaleString()}원 </span>
+              </div>
+              <div className="minus">
+                <span>-</span>
+                <span>-</span>
+              </div>
+              <div className="lastCartTotalPrice">
+                <span>제품가격 + 배송비 </span>
+                {(totalSumPrice + DELIV_PRICE).toLocaleString()}원
+                <span />
+              </div>
+              <div className="remainsPoint">
+                <span>사용 후 잔여 적립금 </span>
+                <span className="cartRemainsPoint">
+                  {' '}
+                  {(point - (totalSumPrice + DELIV_PRICE)).toLocaleString()}
+                </span>
+              </div>
             </div>
           </div>
           <button className="cartItemOrder" onClick={orderCartItems}>
             구매하기
           </button>
+          {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
         </div>
       </div>
     </div>
