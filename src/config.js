@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://10.58.52.209:3000';
+export const BASE_URL = 'http://10.58.52.237:3000';
 
 export const APIS = {
   signUp: `${BASE_URL}/users/signup`,

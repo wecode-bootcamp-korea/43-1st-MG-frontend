@@ -46,7 +46,6 @@ export const Product = ({
       .then(response => response.json())
       .then(data => alert('선택하신 상품이 삭제되었습니다.'));
   }
-
   return (
     <div className="inCartProducts">
       <input
