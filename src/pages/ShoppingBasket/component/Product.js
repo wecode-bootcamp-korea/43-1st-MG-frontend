@@ -36,8 +36,8 @@ export const Product = ({
   //선택삭제 fetch작성
   function onRemove(id) {
     setProductList(productList.filter(item => item.productId !== id));
-    fetch(`${APIS.selectedCartDelete}/${data.productId}`, {
-      method: 'GET',
+    fetch(`${APIS.updateCartCount}?productId=${data.productId}`, {
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('login-token'),
@@ -57,7 +57,8 @@ export const Product = ({
         checked={checkedState}
         onChange={() => toggleSelected(data.productId)}
       />
-      <img src="./images/github.png" alt="productImage" />
+      <img src={data.productThumbnail} alt="productImage" />
+
       <div product className="inCartProductName">
         <span className="productNameText">{data.productName}</span>
         <span className="productInfo">

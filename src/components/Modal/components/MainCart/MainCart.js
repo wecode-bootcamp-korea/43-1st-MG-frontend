@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { calculatePercentage } from '../../../../functions/commonFunc';
+import { APIS } from '../../../../config';
 import './MainCart.scss';
 
 const MainCart = props => {
@@ -20,7 +21,7 @@ const MainCart = props => {
     }
   };
   const handleCount = value => {
-    fetch('http://10.58.52.209:3000/cart', {
+    fetch(`${APIS.updateCartCount}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -39,7 +40,7 @@ const MainCart = props => {
     <div className="mainCart">
       {count > 0 && (
         <div className="cartList">
-          <p>{data.name}</p>
+          <p>{data.products_name}</p>
           <div className="countBtn">
             <button className="btnMinus" name="btnMinus" onClick={handleBtn}>
               -
